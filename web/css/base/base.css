@@ -11,6 +11,14 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--font-display, var(--font-body));
+  letter-spacing: -0.045em;
+}
+
 html,
 body {
   width: 100%;
@@ -28,19 +36,6 @@ body {
   width: 0;
   height: 0;
   display: none;
-}
-
-.page-container {
-  min-height: 100%;
-  width: 100%;
-}
-
-.site-content {
-  width: 100%;
-}
-
-.wrapper {
-  width: 100%;
 }
 
 a {

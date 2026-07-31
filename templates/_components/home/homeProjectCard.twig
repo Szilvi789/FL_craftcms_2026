@@ -1,0 +1,38 @@
+{% set cardImageSmall = { width: 640, quality: 68 } %}
+{% set cardImageMedium = { width: 960, quality: 70 } %}
+{% set cardImageLarge = { width: 1280, quality: 72 } %}
+{% set cardImageSizes = '(max-width: 767px) 46vw, 17vw' %}
+
+<article class="home-work-card">
+  <a
+    class="home-work-card__media-link"
+    href="/{{ project.uri }}"
+    aria-label="Open project: {{ project.title }}"
+    draggable="false"
+  >
+    <div class="home-work-card__media">
+      {% if mainMedia.kind == 'video' %}
+        <video
+          src="{{ mainMedia.url }}"
+          autoplay
+          muted
+          loop
+          playsinline
+          preload="metadata"
+          aria-label="{{ mainMedia.title ?: project.title }}"
+          draggable="false"
+        ></video>
+      {% else %}
+        <img
+          src="{{ mainMedia.getUrl(cardImageMedium) }}"
+          srcset="{{ mainMedia.getUrl(cardImageSmall) }} 640w, {{ mainMedia.getUrl(cardImageMedium) }} 960w, {{ mainMedia.getUrl(cardImageLarge) }} 1280w"
+          sizes="{{ cardImageSizes }}"
+          alt="{{ mainMedia.alt ?: mainMedia.title ?: project.title }}"
+          loading="lazy"
+          decoding="async"
+          draggable="false"
+        >
+      {% endif %}
+    </div>
+  </a>
+</article>

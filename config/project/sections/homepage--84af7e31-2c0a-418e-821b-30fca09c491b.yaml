@@ -13,7 +13,7 @@ previewTargets:
     urlFormat: '{url}'
 propagationMethod: all
 siteSettings:
-  24c4f75f-97a9-4865-98c0-039bb57b8b32: # fl_craftcms_2026
+  24c4f75f-97a9-4865-98c0-039bb57b8b32: # Florian Lechner
     enabledByDefault: true
     hasUrls: true
     template: home.twig

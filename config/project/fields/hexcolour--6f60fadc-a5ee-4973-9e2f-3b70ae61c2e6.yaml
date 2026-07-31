@@ -1,15 +1,15 @@
 columnSuffix: null
-handle: telephoneNumber
-instructions: 'Your telephone number'
-name: 'Telephone Number'
+handle: hexcolour
+instructions: 'A hexadecimal number.'
+name: HEXColour
 searchable: false
 settings:
   byteLimit: null
-  charLimit: null
-  code: true
+  charLimit: 7
+  code: false
   initialRows: 4
   multiline: false
-  placeholder: +43676....
+  placeholder: '#486951'
   uiMode: normal
 translationKeyFormat: null
 translationMethod: none

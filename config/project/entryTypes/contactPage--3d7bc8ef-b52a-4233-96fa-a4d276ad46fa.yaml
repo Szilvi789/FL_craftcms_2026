@@ -73,22 +73,6 @@ fieldLayouts:
             editCondition: null
             elementCondition: null
             elementEditCondition: null
-            fieldUid: 3e8fa2f9-3aad-425f-8796-df0d3fd6a4e0 # Facebook Link
-            handle: null
-            instructions: null
-            label: null
-            required: false
-            tip: null
-            type: craft\fieldlayoutelements\CustomField
-            uid: 02162053-97b8-419a-8114-35c5138c675d
-            userCondition: null
-            warning: null
-            width: 100
-          -
-            dateAdded: '2026-05-11T18:43:57+00:00'
-            editCondition: null
-            elementCondition: null
-            elementEditCondition: null
             fieldUid: 5b385bdf-f28b-4f53-beab-c2c5cb51c4dc # Insta Link
             handle: null
             instructions: null
@@ -97,22 +81,6 @@ fieldLayouts:
             tip: null
             type: craft\fieldlayoutelements\CustomField
             uid: fd15e946-98e8-4311-be92-b90b3c5bd41e
-            userCondition: null
-            warning: null
-            width: 100
-          -
-            dateAdded: '2026-05-11T18:43:57+00:00'
-            editCondition: null
-            elementCondition: null
-            elementEditCondition: null
-            fieldUid: 8d8e6f92-d122-47c2-b662-e62fc423eeb4 # Text
-            handle: null
-            instructions: null
-            label: null
-            required: false
-            tip: null
-            type: craft\fieldlayoutelements\CustomField
-            uid: b0958392-c98c-4d13-b7de-d78eecb32b82
             userCondition: null
             warning: null
             width: 100
@@ -132,22 +100,6 @@ fieldLayouts:
             userCondition: null
             warning: null
             width: 75
-          -
-            dateAdded: '2026-05-11T18:43:57+00:00'
-            editCondition: null
-            elementCondition: null
-            elementEditCondition: null
-            fieldUid: e0967947-c575-468b-a978-14260dcaf746 # Image Size
-            handle: null
-            instructions: null
-            label: null
-            required: false
-            tip: null
-            type: craft\fieldlayoutelements\CustomField
-            uid: 7725c8c1-c583-477b-8b19-353869c1d3fa
-            userCondition: null
-            warning: null
-            width: 100
         name: Content
         uid: 46029dd9-05ef-45a1-9eed-6cb9f56b6c4e
         userCondition: null

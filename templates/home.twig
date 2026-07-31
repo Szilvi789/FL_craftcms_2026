@@ -21,46 +21,25 @@
 {% block navBehavior %}home-reveal{% endblock %}
 
 {% block content %}
-{% set homeMedia = homeEntry ? homeEntry.indexImage.one() : null %}
-{% set homeHeroImageSmall = { width: 900, quality: 72 } %}
-{% set homeHeroImageMedium = { width: 1600, quality: 72 } %}
-{% set homeHeroImageLarge = { width: 2200, quality: 74 } %}
-{% set workColumnsField = homeEntry ? attribute(homeEntry, 'selectedWorkCardColumnContainerField') : null %}
-{% set workColumns = workColumnsField ? workColumnsField.all() : [] %}
-{% set workColumnCount = workColumns|length < 3 ? 3 : (workColumns|length > 5 ? 5 : workColumns|length) %}
+{% set projects = craft.entries().section('projects').site(currentSite).orderBy('projectYear desc, title asc').all() %}
+{% set projectTiles = [] %}
+{% for project in projects %}
+  {% set mainMedia = project.heroImage.one() %}
+  {% if mainMedia %}
+    {% set projectTiles = projectTiles|merge([{
+      project: project,
+      media: mainMedia
+    }]) %}
+  {% endif %}
+{% endfor %}
 {% set coverHoleTop = homeEntry and homeEntry.coverHoleTop ? homeEntry.coverHoleTop : '12vh' %}
 {% set coverHoleLeft = homeEntry and homeEntry.coverHoleLeft ? homeEntry.coverHoleLeft : '55vw' %}
 {% set coverHoleSizeWidth = homeEntry and homeEntry.coverHoleSizeWidth ? homeEntry.coverHoleSizeWidth : '18vw' %}
 
 <section
-  class="home-hero{% if homeMedia %} home-hero--has-media{% endif %}"
+  class="home-hero"
   style="--home-cover-hole-top: {{ coverHoleTop|e('html_attr') }}; --home-cover-hole-left: {{ coverHoleLeft|e('html_attr') }}; --home-cover-hole-size: {{ coverHoleSizeWidth|e('html_attr') }};"
 >
-  {% if homeMedia %}
-    <div class="home-hero__media">
-      {% if homeMedia.kind == 'video' %}
-        <video
-          src="{{ homeMedia.url }}"
-          autoplay
-          muted
-          loop
-          playsinline
-          preload="metadata"
-        ></video>
-      {% else %}
-        <img
-          src="{{ homeMedia.getUrl(homeHeroImageMedium) }}"
-          srcset="{{ homeMedia.getUrl(homeHeroImageSmall) }} 900w, {{ homeMedia.getUrl(homeHeroImageMedium) }} 1600w, {{ homeMedia.getUrl(homeHeroImageLarge) }} 2200w"
-          sizes="100vw"
-          alt="{{ homeMedia.title ?: siteName }}"
-          loading="eager"
-          fetchpriority="high"
-          decoding="async"
-        >
-      {% endif %}
-    </div>
-  {% endif %}
-
   <div
     class="home-hero__cover"
     aria-hidden="true"
@@ -77,29 +56,31 @@
     <h1>{{ siteName }}</h1>
     <h2>Photography</h2>
   </div>
+
+  <div class="home-loader" data-home-loader role="status" aria-live="polite" aria-label="Loading photographs">
+    <span class="home-loader__counter" data-home-loader-counter>0</span>
+  </div>
 </section>
 
-{% if workColumns %}
-  <section class="home-selected-work" aria-labelledby="home-selected-work-title" data-home-selected-work>
-    <div class="home-selected-work__header">
-      <h2 id="home-selected-work-title">Selected work</h2>
-    </div>
-
+{% if projectTiles %}
+  <section class="home-selected-work" aria-label="Projects" data-home-selected-work>
+    <div class="home-selected-work__background-name" aria-hidden="true">{{ siteName }}</div>
     <div
-      class="home-selected-work__grid"
-      style="--home-selected-work-columns: {{ workColumnCount }};"
+      class="home-selected-work__viewport"
+      data-home-infinite-grid
     >
-      {% for column in workColumns %}
-        {% set columnCardsField = attribute(column, 'selectedWorkCardColumn') %}
-        {% set columnCards = columnCardsField ? columnCardsField.all() : [] %}
-        <div class="home-selected-work__column" data-home-work-column>
-          {% for card in columnCards %}
-            {% include "_components/home/homeImageCard.twig" with {
-              card: card
-            } only %}
+      <div class="home-selected-work__container" data-home-infinite-container>
+        <div class="home-selected-work__scene" data-home-infinite-grid-scene>
+          {% for tile in projectTiles %}
+            <div class="home-selected-work__cell" data-home-grid-cell>
+              {% include "_components/home/homeProjectCard.twig" with {
+                project: tile.project,
+                mainMedia: tile.media
+              } only %}
+            </div>
           {% endfor %}
         </div>
-      {% endfor %}
+      </div>
     </div>
   </section>
 {% endif %}

@@ -1,6 +1,6 @@
 columnSuffix: null
 handle: heroImage
-instructions: 'Optional image or MP4 video used as the project preview on the project index.'
+instructions: 'Choose the primary image or MP4 video for this entry.'
 name: 'Hero Image'
 searchable: false
 settings:

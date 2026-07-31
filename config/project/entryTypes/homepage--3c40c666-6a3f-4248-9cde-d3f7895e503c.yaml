@@ -63,115 +63,23 @@ fieldLayouts:
         elementCondition: null
         elements:
           -
-            dateAdded: '2026-05-06T18:56:38+00:00'
+            dateAdded: '2026-06-27T18:37:36+00:00'
             editCondition: null
             elementCondition: null
             elementEditCondition: null
-            fieldUid: aa1e8ce0-05c5-457a-9768-f8464c977732 # Index Image
+            fieldUid: 6f60fadc-a5ee-4973-9e2f-3b70ae61c2e6 # HEXColour
             handle: null
             instructions: null
             label: null
             required: false
             tip: null
             type: craft\fieldlayoutelements\CustomField
-            uid: c1a6ab41-408d-40c5-a6ad-0c5a86f7ec11
+            uid: a22d7908-94ca-4ad3-b7d3-d20ac7d82af6
             userCondition: null
             warning: null
             width: 100
         name: Content
         uid: e76d019b-9979-4604-b3bf-0d5227d43421
-        userCondition: null
-      -
-        elementCondition: null
-        elements:
-          -
-            dateAdded: '2026-05-11T16:40:21+00:00'
-            editCondition: null
-            elementCondition: null
-            elementEditCondition: null
-            fieldUid: 2a1b27e6-0377-43ff-88db-ba90b5395371 # Selected Work Card Column Container Field
-            handle: null
-            instructions: null
-            label: null
-            required: false
-            tip: null
-            type: craft\fieldlayoutelements\CustomField
-            uid: 24c044f2-d9d1-4e93-9cc4-5cafff998d6a
-            userCondition: null
-            warning: null
-            width: 100
-        name: 'Selected Work Cards Container'
-        uid: 4ed63997-b0d9-451e-b1ab-10d575620535
-        userCondition: null
-      -
-        elementCondition: null
-        elements:
-          -
-            dateAdded: '2026-06-27T17:59:05+00:00'
-            editCondition: null
-            elementCondition: null
-            elementEditCondition: null
-            fieldUid: bce2d6b0-da34-407d-ba88-c57f37f812e3 # Single Image
-            handle: null
-            instructions: null
-            label: null
-            required: false
-            tip: null
-            type: craft\fieldlayoutelements\CustomField
-            uid: 92afaae3-47e1-44c5-ad39-0c1674be6049
-            userCondition: null
-            warning: null
-            width: 100
-          -
-            dateAdded: '2026-06-27T17:59:05+00:00'
-            editCondition: null
-            elementCondition: null
-            elementEditCondition: null
-            fieldUid: bce2d6b0-da34-407d-ba88-c57f37f812e3 # Single Image
-            handle: singleImage2
-            instructions: null
-            label: null
-            required: false
-            tip: null
-            type: craft\fieldlayoutelements\CustomField
-            uid: ab199b6f-046d-46b9-8a41-dc6e3088f363
-            userCondition: null
-            warning: null
-            width: 100
-          -
-            dateAdded: '2026-06-27T17:59:05+00:00'
-            editCondition: null
-            elementCondition: null
-            elementEditCondition: null
-            fieldUid: bce2d6b0-da34-407d-ba88-c57f37f812e3 # Single Image
-            handle: singleImage3
-            instructions: null
-            label: null
-            required: false
-            tip: null
-            type: craft\fieldlayoutelements\CustomField
-            uid: 5e893b68-946c-42da-9206-cc79cab345d9
-            userCondition: null
-            warning: null
-            width: 100
-          -
-            dateAdded: '2026-06-27T17:59:05+00:00'
-            editCondition: null
-            elementCondition: null
-            elementEditCondition: null
-            fieldUid: bce2d6b0-da34-407d-ba88-c57f37f812e3 # Single Image
-            handle: singleImage4
-            instructions: null
-            label: null
-            required: false
-            tip: null
-            type: craft\fieldlayoutelements\CustomField
-            uid: 020efa5f-c31c-47a6-8f01-fe08ff1cb535
-            userCondition: null
-            warning: null
-            width: 100
-        name: WelcomeImages
-        uid: 3af20890-238f-472e-9813-7835f3457c46
         userCondition: null
     thumbFieldKey: null
 handle: homepage

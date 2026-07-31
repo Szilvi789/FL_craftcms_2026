@@ -4,9 +4,6 @@
   "require": {
     "craftcms/cms": "^5.9.0",
     "craftcms/contact-form": "^3.1.0",
-    "craftcms/stripe": "^1.7.1",
-    "ether/seo": "^5.0.0",
-    "leowebguy/simple-mailchimp": "^3.0.1",
     "vlucas/phpdotenv": "^5.4.0"
   },
   "require-dev": {

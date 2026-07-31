@@ -4,7 +4,6 @@ export function initSiteUI(root = document) {
   const fullscreenToggles = Array.from(root.querySelectorAll(".site-fullscreen-toggle"));
   const toggles = Array.from(root.querySelectorAll(".site-panel-toggle"));
   const siteNav = root.querySelector(".site-nav");
-  const homeHero = root.querySelector(".home-hero");
   let pairs = [];
   let originalNavTop = null;
   let activeHomeTrackedPanel = null;
@@ -13,7 +12,6 @@ export function initSiteUI(root = document) {
   let isScrollTicking = false;
   const NAV_HIDE_TRIGGER_Y = 72;
   const NAV_SCROLL_DELTA = 8;
-  const HOME_NAV_EDGE_OFFSET_REM = 5;
   const HOME_TRACKED_PANEL_FADE_DISTANCE = 220;
 
   const fullscreenElement = () => document.fullscreenElement || document.webkitFullscreenElement;
@@ -33,15 +31,14 @@ export function initSiteUI(root = document) {
   };
   const hasOpenPanel = () => pairs.some(({ panel }) => panel.classList.contains("is-open"));
   const hasScrollablePage = () => (document.documentElement.scrollHeight - window.innerHeight) > 8;
-  const getRootRemPx = () => Number.parseFloat(window.getComputedStyle(document.documentElement).fontSize) || 16;
   const isHomeRevealNav = () => Boolean(siteNav?.classList.contains("site-nav--behavior-home-reveal"));
   const isTrackedPanel = (panel) => panel?.matches?.(".site-info-panel, .site-imprint-panel, .site-privacy-panel") || false;
   const isTrackedHomePanel = (panel) => isHomeRevealNav() && isTrackedPanel(panel);
-  const hasBlockingHomeRevealPanel = () => pairs.some(({ panel }) => (
-    panel.classList.contains("is-open") &&
-    !isTrackedHomePanel(panel)
-  ));
-
+  const announceHomePanelState = (open) => {
+    root.dispatchEvent(new CustomEvent("site:home-panel-state", {
+      detail: { open: Boolean(open) },
+    }));
+  };
   const resetHomeTrackedPanelState = (panel = activeHomeTrackedPanel?.panel) => {
     if (!panel) {
       activeHomeTrackedPanel = null;
@@ -78,35 +75,6 @@ export function initSiteUI(root = document) {
     siteNav.classList.toggle("is-hidden-by-scroll", hidden);
   };
 
-  const syncHomeRevealNavPosition = () => {
-    if (
-      !siteNav ||
-      !homeHero ||
-      !siteNav.classList.contains("site-nav--behavior-home-reveal") ||
-      !document.body.classList.contains("home-nav-revealed") ||
-      hasBlockingHomeRevealPanel()
-    ) {
-      if (siteNav?.classList.contains("site-nav--behavior-home-reveal")) {
-        siteNav.style.top = "";
-      }
-      return false;
-    }
-
-    const heroBottom = homeHero.getBoundingClientRect().bottom;
-    const navHeight = siteNav.getBoundingClientRect().height;
-    const edgeOffset = getRootRemPx() * HOME_NAV_EDGE_OFFSET_REM;
-    const centeredNavBottom = (window.innerHeight / 2) + (navHeight / 2);
-    const safeHeroBottom = heroBottom - edgeOffset;
-
-    if (safeHeroBottom <= centeredNavBottom) {
-      siteNav.style.top = `${safeHeroBottom - (navHeight / 2)}px`;
-      return true;
-    }
-
-    siteNav.style.top = "";
-    return false;
-  };
-
   const canAutoHideNav = () => {
     if (!siteNav || !hasScrollablePage() || hasOpenPanel()) {
       return false;
@@ -136,12 +104,8 @@ export function initSiteUI(root = document) {
       return;
     }
 
-    const isTrackingHomeExit = syncHomeRevealNavPosition();
-
-    if (isTrackingHomeExit) {
-      setNavHiddenByScroll(false);
-      lastScrollY = currentScrollY;
-      return;
+    if (isHomeRevealNav()) {
+      siteNav.style.top = "";
     }
 
     if (!canAutoHideNav() || currentScrollY <= NAV_HIDE_TRIGGER_Y) {
@@ -282,7 +246,7 @@ export function initSiteUI(root = document) {
     siteNav.style.top = `${currentTop + topDelta}px`;
   };
 
-  const closeAll = () => {
+  const closeAll = ({ announce = true } = {}) => {
     pairs.forEach(({ toggle, panel }) => {
       toggle.setAttribute("aria-expanded", "false");
       panel.setAttribute("aria-hidden", "true");
@@ -291,11 +255,16 @@ export function initSiteUI(root = document) {
     });
 
     resetNavPosition();
+    if (announce) {
+      announceHomePanelState(false);
+    }
     syncNavOnScroll();
   };
 
   const setOpen = async (selectedToggle, open) => {
-    closeAll();
+    const selectedPair = pairs.find(({ toggle }) => toggle === selectedToggle);
+    closeAll({ announce: false });
+    announceHomePanelState(Boolean(open && selectedPair && isTrackedHomePanel(selectedPair.panel)));
 
     if (!open) {
       return;
@@ -303,9 +272,8 @@ export function initSiteUI(root = document) {
 
     await revealHomeHero("smooth");
 
-    const selectedPair = pairs.find(({ toggle }) => toggle === selectedToggle);
-
     if (!selectedPair) {
+      announceHomePanelState(false);
       return;
     }
 

@@ -1,4 +1,4 @@
-dateModified: 1782583145
+dateModified: 1785515511
 email:
   fromEmail: mail@szilviavarga.eu
   fromName: fl_craftcms_2026
@@ -14,24 +14,18 @@ fs:
 meta:
   __names__:
     0c9a682e-74b0-41d6-9634-3425aa21eeb0: Caption # Caption
-    2a1b27e6-0377-43ff-88db-ba90b5395371: 'Selected Work Card Column Container Field' # Selected Work Card Column Container Field
     3c40c666-6a3f-4248-9cde-d3f7895e503c: Homepage # Homepage
     3c97cebf-a126-4d9a-b681-f07555f654c8: 'Initial Background Media' # Initial Background Media
     3d7bc8ef-b52a-4233-96fa-a4d276ad46fa: 'Contact Page Details' # Contact Page Details
-    3e8fa2f9-3aad-425f-8796-df0d3fd6a4e0: 'Facebook Link' # Facebook Link
     4d45c449-648c-43d4-b7c2-0dc057e89950: 'Hero Image' # Hero Image
     5b385bdf-f28b-4f53-beab-c2c5cb51c4dc: 'Insta Link' # Insta Link
+    6f60fadc-a5ee-4973-9e2f-3b70ae61c2e6: HEXColour # HEXColour
     8d8e6f92-d122-47c2-b662-e62fc423eeb4: Text # Text
-    9b541b36-da6b-431d-8255-f58bc7375a5c: 'Multi Image' # Multi Image
     9c28928f-b9f7-4776-ae69-e62da16e7bb3: Email # Email
-    20afa535-4839-4205-a95e-37726266b742: 'Selected Work Card Column' # Selected Work Card Column
-    24c4f75f-97a9-4865-98c0-039bb57b8b32: fl_craftcms_2026 # fl_craftcms_2026
-    029a29ca-e3b5-477b-a282-8ee3635d8744: 'Linked Project' # Linked Project
+    24c4f75f-97a9-4865-98c0-039bb57b8b32: 'Florian Lechner' # Florian Lechner
     34b68727-d9fc-4be6-92a4-6433fc5e77ad: Image # Image
-    41b9d6e7-c976-48b4-95d3-01c0f53f059e: 'Media Type' # Media Type
     042ec6e4-cb40-4199-a50d-c9f6d034781e: 'Image Placement' # Image Placement
     50b6dfdd-db4f-452d-b0bb-792599d349f5: 'Project Blocks' # Project Blocks
-    75af86be-349d-4dec-ac9e-431ffbe54ebc: Video # Video
     84af7e31-2c0a-418e-821b-30fca09c491b: Homepage # Homepage
     89eecf69-1f6b-495c-b671-4d59025672df: 'Image&Video' # Image&Video
     295a13d8-58ef-46ad-ac11-6bd8a6702105: fl_craftcms_2026 # fl_craftcms_2026
@@ -44,39 +38,19 @@ meta:
     a8c5aee7-302b-47d7-a6f5-158cbebd8000: 'Public Schema' # Public Schema
     a73c3bd0-66d2-45f4-8f4a-e5c9fef3ec9d: 'Project Media' # Project Media
     a4767100-10cc-4b48-87bd-2246e9965fd8: 'Project Type' # Project Type
-    aa1e8ce0-05c5-457a-9768-f8464c977732: 'Index Image' # Index Image
     b9f5d63d-5ae1-495c-8d4a-09042187d7fc: Description # Description
-    b6211ec8-df28-453c-a214-6967f4ceb00a: homeImageCard # homeImageCard
-    bce2d6b0-da34-407d-ba88-c57f37f812e3: 'Single Image' # Single Image
-    cfe20cb2-f984-4ccd-8bd1-7ac5d198fe59: Project # Project
-    d3cc6e5c-7e89-49b8-870e-0fe8e1514d57: 'Telephone Number' # Telephone Number
+    b9f5d63d-5ae1-4950-a8d4-09042187d7fc: Description # Description
     d529b2cf-5512-4ec4-a991-d60c5ed92320: 'Cover Hole Left' # Cover Hole Left
     d4442f70-1a78-46d9-baf3-739d429852e5: Year # Year
-    de80b066-e9b4-403c-ac67-142c7dc24b1e: Index # Index
     e0967947-c575-468b-a978-14260dcaf746: 'Image Size' # Image Size
-    e4dcd74d-95e2-4c96-974e-65e2648b9ede: Index # Index
-    ebbacd8c-4e68-423d-9780-339784c9f145: selectedWorkCardColumns # selectedWorkCardColumns
     ebc14517-892e-49d1-8922-4b4b73dc1: 'External Link' # External Link
-    f4438e25-a02a-4b6e-a38a-142915a42244: multiImageSpeed # multiImageSpeed
+    ebc14517-892e-49e0-bb3d-cb2762d2df8f: 'External Link' # External Link
     fec4bc85-219e-4ed8-acee-07b86e13c38c: 'Cover Hole Top' # Cover Hole Top
-    ff2f85c6-34d2-4894-9228-67896af43011: gif # gif
 plugins:
   contact-form:
     edition: standard
     enabled: true
     schemaVersion: 1.0.0
-  seo:
-    edition: standard
-    enabled: true
-    schemaVersion: 3.2.0
-  simple-mailchimp:
-    edition: standard
-    enabled: true
-    schemaVersion: 1.0.0
-  stripe:
-    edition: standard
-    enabled: true
-    schemaVersion: 1.2.0
 system:
   edition: solo
   live: true

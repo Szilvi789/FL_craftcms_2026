@@ -1,0 +1,25 @@
+.reflow-text__word {
+  display: inline-block;
+  white-space: nowrap;
+}
+
+.reflow-letter,
+.reflow-text__space {
+  display: inline-block;
+  overflow: hidden;
+  max-width: none;
+  line-height: inherit;
+  vertical-align: bottom;
+  will-change: width, opacity, transform;
+}
+
+.reflow-text__space {
+  white-space: pre;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reflow-letter,
+  .reflow-text__space {
+    will-change: auto;
+  }
+}

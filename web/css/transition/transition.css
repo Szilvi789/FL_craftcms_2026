@@ -30,7 +30,7 @@
 .page-transition__mask {
   position: absolute;
   display: block;
-  background: #ffffff;
+  background: var(--page-transition-fill, #f5f3ef);
   pointer-events: none;
   transform: translateZ(0);
   backface-visibility: hidden;

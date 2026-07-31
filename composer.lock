@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "15be577ea917b3e691fa7cee9008f577",
+    "content-hash": "9caca18b62752141e0f9ea67beb8364c",
     "packages": [
         {
             "name": "bacon/bacon-qr-code",
@@ -622,52 +622,6 @@
             "time": "2026-04-07T16:48:35+00:00"
         },
         {
-            "name": "craftcms/stripe",
-            "version": "1.7.1",
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/craftcms/stripe/zipball/78a9de87fd306d3312107ca70096b345c15fb430",
-                "reference": "78a9de87fd306d3312107ca70096b345c15fb430",
-                "shasum": ""
-            },
-            "require": {
-                "craftcms/cms": "^5.6.0",
-                "php": "^8.2",
-                "stripe/stripe-php": "^13|^14"
-            },
-            "type": "craft-plugin",
-            "extra": {
-                "handle": "stripe",
-                "name": "Stripe",
-                "description": "Sync and extend Stripe products and subscriptions.",
-                "developer": "Pixel & Tonic",
-                "documentationUrl": "https://github.com/craftcms/stripe"
-            },
-            "autoload": {
-                "psr-4": {
-                    "craft\\stripe\\": "src/"
-                }
-            },
-            "license": [
-                "MIT"
-            ],
-            "description": "Stripe Integration for Craft CMS",
-            "homepage": "https://github.com/craftcms/stripe",
-            "keywords": [
-                "cms",
-                "craftcms",
-                "stripe"
-            ],
-            "support": {
-                "email": "support@craftcms.com",
-                "issues": "https://github.com/craftcms/stripe/issues?state=open",
-                "source": "https://github.com/craftcms/stripe",
-                "docs": "https://github.com/craftcms/stripe",
-                "rss": "https://github.com/craftcms/stripe/releases.atom"
-            },
-            "time": "2026-01-19T08:18:57+00:00"
-        },
-        {
             "name": "creocoder/yii2-nested-sets",
             "version": "0.9.0",
             "dist": {
@@ -1022,40 +976,6 @@
             "time": "2024-02-05T11:56:58+00:00"
         },
         {
-            "name": "drewm/mailchimp-api",
-            "version": "v2.5.4",
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/drewm/mailchimp-api/zipball/c6cdfab4ca6ddbc3b260913470bd0a4a5cb84c7a",
-                "reference": "c6cdfab4ca6ddbc3b260913470bd0a4a5cb84c7a",
-                "shasum": ""
-            },
-            "require": {
-                "ext-curl": "*",
-                "ext-json": "*",
-                "php": ">=5.3"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "DrewM\\MailChimp\\": "src"
-                }
-            },
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Drew McLellan",
-                    "email": "drew.mclellan@gmail.com",
-                    "homepage": "http://allinthehead.com/"
-                }
-            ],
-            "description": "Super-simple, minimum abstraction MailChimp API v3 wrapper",
-            "homepage": "https://github.com/drewm/mailchimp-api",
-            "time": "2019-08-06T09:24:58+00:00"
-        },
-        {
             "name": "egulias/email-validator",
             "version": "4.0.4",
             "source": {
@@ -1195,42 +1115,6 @@
                 "source": "https://github.com/darylldoyle/svg-sanitizer/tree/0.22.0"
             },
             "time": "2025-08-12T10:13:48+00:00"
-        },
-        {
-            "name": "ether/seo",
-            "version": "5.0.0",
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/ethercreative/seo/zipball/aa23f778c5d54e8ff387ba36f624cc7b4f23b3d7",
-                "reference": "aa23f778c5d54e8ff387ba36f624cc7b4f23b3d7",
-                "shasum": ""
-            },
-            "require": {
-                "craftcms/cms": "^5.0",
-                "php": "^8.2"
-            },
-            "type": "craft-plugin",
-            "extra": {
-                "handle": "seo",
-                "name": "SEO",
-                "developer": "Ether Creative",
-                "developerUrl": "https://ethercreative.co.uk",
-                "class": "ether\\seo\\Seo"
-            },
-            "autoload": {
-                "psr-4": {
-                    "ether\\seo\\": "src/"
-                }
-            },
-            "license": [
-                "MIT"
-            ],
-            "description": "SEO utilities including a unique field type, sitemap, & redirect manager",
-            "support": {
-                "issues": "https://github.com/ethercreative/seo",
-                "docs": "https://github.com/ethercreative/seo/blob/v3/README.md"
-            },
-            "time": "2024-10-09T10:52:49+00:00"
         },
         {
             "name": "ezyang/htmlpurifier",
@@ -2128,43 +2012,6 @@
                 }
             ],
             "time": "2026-03-08T20:05:35+00:00"
-        },
-        {
-            "name": "leowebguy/simple-mailchimp",
-            "version": "3.0.1",
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/leowebguy/simple-mailchimp/zipball/2f223a2b440ace3014a11a88888fe142704d25db",
-                "reference": "2f223a2b440ace3014a11a88888fe142704d25db",
-                "shasum": ""
-            },
-            "require": {
-                "craftcms/cms": "^5.0",
-                "drewm/mailchimp-api": "^2.5",
-                "php": "^8.2"
-            },
-            "type": "craft-plugin",
-            "extra": {
-                "name": "Simple Mailchimp",
-                "handle": "simple-mailchimp",
-                "class": "leowebguy\\simplemailchimp\\SimpleMailchimp"
-            },
-            "autoload": {
-                "psr-4": {
-                    "leowebguy\\simplemailchimp\\": "src/"
-                }
-            },
-            "license": [
-                "proprietary"
-            ],
-            "description": "A minimal Craft plugin to connect forms to Mailchimp",
-            "keywords": [
-                "craftcms",
-                "mailchimp",
-                "mailing",
-                "newsletter"
-            ],
-            "time": "2024-10-08T23:43:23+00:00"
         },
         {
             "name": "maennchen/zipstream-php",
@@ -4063,50 +3910,6 @@
                 }
             ],
             "time": "2026-03-23T22:56:56+00:00"
-        },
-        {
-            "name": "stripe/stripe-php",
-            "version": "v14.10.0",
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/stripe/stripe-php/zipball/7e1c4b5d2beadeaeddc42fd1f8a50fdb18b37f30",
-                "reference": "7e1c4b5d2beadeaeddc42fd1f8a50fdb18b37f30",
-                "shasum": ""
-            },
-            "require": {
-                "ext-curl": "*",
-                "ext-json": "*",
-                "ext-mbstring": "*",
-                "php": ">=5.6.0"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "2.0-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Stripe\\": "lib/"
-                }
-            },
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Stripe and contributors",
-                    "homepage": "https://github.com/stripe/stripe-php/contributors"
-                }
-            ],
-            "description": "Stripe PHP Library",
-            "homepage": "https://stripe.com/",
-            "keywords": [
-                "api",
-                "payment processing",
-                "stripe"
-            ],
-            "time": "2024-06-13T21:04:47+00:00"
         },
         {
             "name": "symfony/clock",
@@ -8184,10 +7987,10 @@
     ],
     "aliases": [],
     "minimum-stability": "dev",
-    "stability-flags": [],
+    "stability-flags": {},
     "prefer-stable": true,
     "prefer-lowest": false,
-    "platform": [],
-    "platform-dev": [],
-    "plugin-api-version": "2.6.0"
+    "platform": {},
+    "platform-dev": {},
+    "plugin-api-version": "2.9.0"
 }

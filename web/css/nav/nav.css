@@ -1,19 +1,22 @@
 .site-nav {
   color: var(--color-text);
-  font: inherit;
-  font-size: 1.2rem;
-  letter-spacing: 0;
-  line-height: 4;
+  font-family: var(--font-display, var(--font-body));
+  font-size: clamp(0.82rem, 1.05vw, 0.95rem);
+  font-weight: 750;
+  letter-spacing: -0.035em;
+  line-height: 1;
   text-decoration: none;
+  text-transform: uppercase;
 }
 
 .site-nav__link {
   color: inherit;
-  font: inherit;
+  font-family: inherit;
   font-size: inherit;
   letter-spacing: inherit;
   line-height: inherit;
   text-decoration: none;
+  text-transform: inherit;
 }
 
 .site-nav {
@@ -37,12 +40,12 @@
 }
 
 .site-nav {
-  left: 8rem;
-  right: 8rem;
+  left: clamp(1rem, 2vw, 1.75rem);
+  right: clamp(1rem, 2vw, 1.75rem);
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: 3rem;
+  gap: clamp(1.25rem, 2.4vw, 2.5rem);
 }
 
 .site-nav--theme-black {
@@ -64,11 +67,11 @@
 }
 
 .site-nav--behavior-static {
-  top: 1rem;
+  top: clamp(1rem, 2vw, 1.5rem);
 }
 
 .site-nav--behavior-home-reveal {
-  top: 50%;
+  top: clamp(1rem, 2vw, 1.5rem);
 }
 
 .site-nav--layout-home-only {
@@ -148,6 +151,11 @@
   padding: 0;
   background: transparent;
   cursor: pointer;
+  font-family: inherit;
+  font-size: inherit;
+  letter-spacing: inherit;
+  line-height: inherit;
+  text-transform: inherit;
 }
 
 .site-fullscreen-toggle {
@@ -302,7 +310,7 @@
   }
 
   .site-nav__link {
-    font-size: 0.90rem;
+    font-size: 0.78rem;
   }
   .site-nav {
     left: 0.85rem;
@@ -315,7 +323,7 @@
   }
 
   .site-nav--behavior-home-reveal {
-    top: 50%;
+    top: 0.85rem;
   }
 
   .site-nav--layout-home-only {

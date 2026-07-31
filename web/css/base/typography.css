@@ -1,75 +1,21 @@
 @font-face {
-  font-family: "Rostex";
-  src: url("/assets/fonts/rostex/Rostex-Regular.otf") format("opentype"),
-       url("/assets/fonts/rostex/Rostex-Regular.ttf") format("truetype");
-  font-weight: 400;
+  font-family: "League Spartan";
+  src: url("/assets/fonts/league-spartan/LeagueSpartan-Variable.ttf") format("truetype");
+  font-weight: 100 900;
   font-style: normal;
   font-display: swap;
 }
 
 @font-face {
-  font-family: "Steelfish";
-  src: url("/assets/fonts/steelfish/Steelfish%20Rg.otf") format("opentype");
-  font-weight: 400;
+  font-family: "Instrument Sans";
+  src: url("/assets/fonts/instrument-sans/InstrumentSans-Variable.ttf") format("truetype");
+  font-weight: 400 700;
+  font-stretch: 75% 100%;
   font-style: normal;
   font-display: swap;
 }
-
-@font-face {
-  font-family: "European Teletext";
-  src: url("/assets/fonts/european_teletext/EuropeanTeletext.ttf") format("truetype");
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "European Teletext Nuevo";
-  src: url("/assets/fonts/european_teletext/EuropeanTeletextNuevo.ttf") format("truetype");
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
-}
-
 
 :root {
-
-  /* Global Google fonts from _config.yml -> nav_fonts -> _layouts/base.html */
-  --font-playfair-display: "Playfair Display", serif;
-  --font-rubik-mono-one: "Rubik Mono One", sans-serif;
-  --font-aldrich: "Aldrich", sans-serif;
-  --font-bungee: "Bungee", sans-serif;
-  --font-plaster: "Plaster", system-ui;
-  --font-protest-guerrilla: "Protest Guerrilla", sans-serif;
-  --font-stalinist-one: "Stalinist One", sans-serif;
-  --font-tulpen-one: "Tulpen One", sans-serif;
-  --font-rock-salt: "Rock Salt", cursive;
-  --font-Knewave: "Knewave", cursive;
-  --font-Bebas-Neue: "Bebas Neue", cursive;
-  --font-Oi: "Oi", cursive;
-  --font-Roboto-Flex: "Roboto Flex", sans-serif;
-  --font-rostex: "Rostex", sans-serif;
-  --font-steelfish: "Steelfish", sans-serif;
-  --font-european-teletext: "European Teletext", monospace;
-  --font-european-teletext-nuevo: "European Teletext Nuevo", monospace;
-  --font-google-sans: "Google Sans", "Segoe UI", sans-serif;
-
-  /* Base stack aliases used across the project */
-  --font-ibm-plex-sans: "IBM Plex Sans", "Segoe UI", sans-serif;
-  --font-ibm-plex-mono: "IBM Plex Mono", "Consolas", "Courier New", monospace;
-
-  /* Page-level font examples (only loaded where page front matter adds them) */
-  --font-oswald: "Oswald", sans-serif;
-
-  --font-body: "IBM Plex Sans", "Segoe UI", sans-serif;
-  --font-display: "IBM Plex Sans", "Segoe UI", sans-serif;
-  --font-mono: "IBM Plex Mono", "Consolas", "Courier New", monospace;
-  --text-base: 1rem;
-  --text-sm: 0.875rem;
-  --text-lg: 1.125rem;
-  --text-xl: 1.5rem;
-  --text-2xl: 2rem;
-  --line-tight: 1.1;
-  --line-normal: 1.5;
-  --line-relaxed: 1.7;
+  --font-body: "Instrument Sans", "Helvetica Neue", sans-serif;
+  --font-display: "League Spartan", "Arial Black", sans-serif;
 }

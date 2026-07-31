@@ -102,19 +102,13 @@ export function initPageTransition({ mountPage, destroyCurrentPage, getActivePag
       return;
     }
 
-    const currentY = siteNav.classList.contains("site-nav--behavior-home-reveal")
-      ? Number(gsap.getProperty(siteNav, "y")) || 0
-      : 0;
-
     gsap.killTweensOf(targets);
     gsap.set(targets, {
       autoAlpha: 1,
-      y: currentY,
     });
 
     await tweenTo(targets, {
       autoAlpha: 0,
-      y: currentY - 24,
       duration: NAV_OUT_DURATION / 1000,
       ease: "power2.inOut",
     });
@@ -131,12 +125,10 @@ export function initPageTransition({ mountPage, destroyCurrentPage, getActivePag
     gsap.killTweensOf(targets);
     gsap.set(targets, {
       autoAlpha: 0,
-      y: -24,
     });
 
     await tweenTo(targets, {
       autoAlpha: 1,
-      y: 0,
       duration: NAV_IN_DURATION / 1000,
       ease: "power2.inOut",
     });
@@ -255,7 +247,6 @@ export function initPageTransition({ mountPage, destroyCurrentPage, getActivePag
         }
       },
       async enter(data) {
-        let preparedHomeReveal = false;
         let pageApi = null;
 
         try {
@@ -281,16 +272,14 @@ export function initPageTransition({ mountPage, destroyCurrentPage, getActivePag
             pageApi &&
             typeof pageApi.prepareRevealForTransition === "function"
           ) {
-            preparedHomeReveal = await pageApi.prepareRevealForTransition();
+            await pageApi.prepareRevealForTransition();
             await nextFrame();
           }
 
           await wait(PAGE_CHANGE_HOLD_DURATION);
           await openCover();
 
-          if (preparedHomeReveal && pageApi && typeof pageApi.animateNavIntoReveal === "function") {
-            await pageApi.animateNavIntoReveal();
-          } else if (!preparedHomeReveal && data.next.namespace !== "home") {
+          if (data.next.namespace !== "home") {
             await Promise.all([
               animateNavIn(data.next.container),
               pageApi && typeof pageApi.animateEnter === "function"
