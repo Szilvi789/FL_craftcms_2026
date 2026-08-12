@@ -19,11 +19,9 @@
 {% set contactFormStartsOpen = (submission is defined and submission) or craft.app.session.hasFlash('notice') or craft.app.session.hasFlash('error') %}
 
 {% block barbaNamespace %}contact{% endblock %}
-{% block bodyClass %}contact-page-view{% endblock %}
 {% block navLayout %}contact{% endblock %}
 {% block navBackHref %}{{ siteUrl }}#home-reveal{% endblock %}
 {% block navContactHref %}{{ contactEmail ? 'mailto:' ~ contactEmail : '' }}{% endblock %}
-{% block navContactToggleExpanded %}{{ contactFormStartsOpen ? 'true' : 'false' }}{% endblock %}
 {% block title %}{{ contactEntry and contactEntry.title ? contactEntry.title : 'Contact' }} - {{ siteName }}{% endblock %}
 
 {% block content %}

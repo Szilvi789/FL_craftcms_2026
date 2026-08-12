@@ -1,0 +1,16 @@
+columnSuffix: null
+handle: privacyInquiryRetention
+instructions: 'State when contact correspondence is deleted. This value is inserted into the Contact Requests section.'
+name: 'Contact Request Retention'
+searchable: false
+settings:
+  byteLimit: null
+  charLimit: null
+  code: false
+  initialRows: 2
+  multiline: true
+  placeholder: 'e.g. after the request is resolved, subject to legal retention duties'
+  uiMode: normal
+translationKeyFormat: null
+translationMethod: none
+type: craft\fields\PlainText

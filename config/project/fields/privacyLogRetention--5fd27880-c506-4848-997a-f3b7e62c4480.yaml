@@ -1,0 +1,16 @@
+columnSuffix: null
+handle: privacyLogRetention
+instructions: 'Enter the production host’s verified deletion period. This value is inserted into the Web Server Log Files section.'
+name: 'Log Retention Period'
+searchable: false
+settings:
+  byteLimit: null
+  charLimit: null
+  code: false
+  initialRows: 4
+  multiline: false
+  placeholder: 'e.g. 30 days'
+  uiMode: normal
+translationKeyFormat: null
+translationMethod: none
+type: craft\fields\PlainText

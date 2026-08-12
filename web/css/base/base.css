@@ -56,14 +56,16 @@ a {
     z-index: 200;
     width: 0.8rem;
     height: 0.8rem;
-    border: 1px solid #111111;
+    border: 1px solid currentColor;
     background: transparent;
+    color: #ffffff;
+    mix-blend-mode: difference;
     pointer-events: none;
     opacity: 0;
     translate: 0.45rem 0.45rem;
+    transform: translate3d(-2rem, -2rem, 0);
+    will-change: transform, opacity, background-color;
     transition:
-      left var(--duration-base) var(--easing-standard),
-      top var(--duration-base) var(--easing-standard),
       opacity var(--duration-fast) ease,
       background-color var(--duration-fast) ease;
   }
@@ -73,6 +75,6 @@ a {
   }
 
   .site-cursor.is-active {
-    background: #111111;
+    background: currentColor;
   }
 }

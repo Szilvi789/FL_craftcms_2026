@@ -10,10 +10,90 @@
   pointer-events: none;
   --site-home-panel-opacity: 1;
   transform: translateY(calc(100% + 1rem));
+  max-height: calc(100dvh - 10.5rem);
+  overflow-y: auto;
+  overscroll-behavior: contain;
   transition:
     transform var(--duration-slow) var(--easing-standard),
     opacity var(--duration-base) ease,
     visibility 0s linear var(--duration-base);
+}
+
+.imprint-text,
+.privacy-text {
+  font-size: clamp(0.875rem, 0.25vw + 0.8rem, 1rem);
+  line-height: 1.4;
+  overflow-wrap: anywhere;
+}
+
+.imprint-text__title,
+.imprint-text__heading,
+.privacy-text__title,
+.privacy-text__heading {
+  font-family: inherit;
+  font-size: 1em;
+  line-height: inherit;
+  letter-spacing: normal;
+}
+
+.imprint-text__title,
+.privacy-text__title {
+  margin: 0 0 1.4em;
+  font-weight: 650;
+}
+
+.imprint-text__heading,
+.privacy-text__heading {
+  margin: 0 0 0.25em;
+  font-weight: 650;
+}
+
+.imprint-text__section,
+.privacy-text__section {
+  margin: 0 0 1.4em;
+}
+
+.imprint-text__section--last {
+  margin-bottom: 0;
+}
+
+.imprint-text__section p,
+.imprint-text__address,
+.privacy-text__section p,
+.privacy-text__address {
+  margin: 0;
+}
+
+.imprint-text__address,
+.privacy-text__address {
+  font-style: normal;
+}
+
+.imprint-text__address > *,
+.privacy-text__address > * {
+  display: block;
+}
+
+.imprint-text__label,
+.privacy-text__label {
+  font-weight: 650;
+}
+
+.imprint-text a,
+.privacy-text a {
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 0.16em;
+}
+
+.privacy-text__section .panel-rich-text > * + *,
+.privacy-text__section .panel-rich-text + p {
+  margin-top: 0.75em;
+}
+
+.privacy-text__updated {
+  margin: 0;
+  padding-top: 0.1em;
 }
 
 .site-imprint-panel__inner,
@@ -45,17 +125,13 @@
     visibility 0s linear 0s;
 }
 
-.imprint-text p,
-.privacy-text p {
-  margin: 0;
-}
-
 @media (max-width: 500px) {
   .site-imprint-panel,
   .site-privacy-panel {
     right: 0.85rem;
-    bottom: 0.85rem;
+    bottom: clamp(7rem, 18dvh, 10rem);
     left: 0.85rem;
+    max-height: calc(82dvh - 4.5rem);
   }
 
   .site-imprint-panel__inner,

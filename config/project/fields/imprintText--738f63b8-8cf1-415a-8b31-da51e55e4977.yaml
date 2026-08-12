@@ -1,0 +1,49 @@
+columnSuffix: null
+handle: imprintText
+instructions: 'Optional editable note shown below the structured Imprint. If empty, a concise copyright/external-links note is used. A general liability disclaimer is not required and does not exclude liability under Austrian law.'
+name: 'Copyright and External Links'
+searchable: false
+settings:
+  availableTransforms: '*'
+  availableVolumes: '*'
+  characterLimit: null
+  css: null
+  cssFile: null
+  defaultTransform: null
+  defaultUploadLocationSubpath: null
+  defaultUploadLocationVolume: null
+  fullGraphqlData: true
+  headingLevels:
+    - 2
+    - 3
+  imageEntryTypeUid: null
+  imageFieldUid: null
+  imageMode: img
+  js: null
+  jsFile: null
+  options: null
+  parseEmbeds: false
+  purifierConfig: null
+  purifyHtml: true
+  showUnpermittedFiles: false
+  showUnpermittedVolumes: false
+  showWordCount: false
+  sourceEditingGroups:
+    - __ADMINS__
+  toolbar:
+    - heading
+    - '|'
+    - bold
+    - italic
+    - underline
+    - link
+    - '|'
+    - bulletedList
+    - numberedList
+    - '|'
+    - undo
+    - redo
+  wordLimit: null
+translationKeyFormat: null
+translationMethod: none
+type: craft\ckeditor\Field

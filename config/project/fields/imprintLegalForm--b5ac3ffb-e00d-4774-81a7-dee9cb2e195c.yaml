@@ -1,0 +1,16 @@
+columnSuffix: null
+handle: imprintLegalForm
+instructions: 'Enter the exact legal form, for example Einzelunternehmen. If the business is registered in the Firmenbuch, use its registered legal form.'
+name: 'Legal Form'
+searchable: false
+settings:
+  byteLimit: null
+  charLimit: null
+  code: false
+  initialRows: 4
+  multiline: false
+  placeholder: 'e.g. Einzelunternehmen'
+  uiMode: normal
+translationKeyFormat: null
+translationMethod: none
+type: craft\fields\PlainText

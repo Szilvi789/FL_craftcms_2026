@@ -1,0 +1,44 @@
+columnSuffix: null
+handle: displayTypeface
+instructions: 'Used automatically for the menu, homepage name, loaders, page titles, and major headings. The placement and typography roles stay fixed; this only changes the font family.'
+name: 'Display and Navigation Typeface'
+searchable: false
+settings:
+  customOptions: false
+  options:
+    -
+      __assoc__:
+        -
+          - label
+          - 'League Spartan — current, bold geometric'
+        -
+          - value
+          - leagueSpartan
+        -
+          - default
+          - true
+    -
+      __assoc__:
+        -
+          - label
+          - 'Instrument Sans — understated and neutral'
+        -
+          - value
+          - instrumentSans
+        -
+          - default
+          - false
+    -
+      __assoc__:
+        -
+          - label
+          - 'Manrope — contemporary with softer forms'
+        -
+          - value
+          - manrope
+        -
+          - default
+          - false
+translationKeyFormat: null
+translationMethod: none
+type: craft\fields\Dropdown

@@ -15,6 +15,22 @@
   font-display: swap;
 }
 
+@font-face {
+  font-family: "Manrope";
+  src: url("/assets/fonts/manrope/Manrope-Variable.ttf") format("truetype");
+  font-weight: 200 800;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Source Sans 3";
+  src: url("/assets/fonts/source-sans-3/SourceSans3-Variable.ttf") format("truetype");
+  font-weight: 200 900;
+  font-style: normal;
+  font-display: swap;
+}
+
 :root {
   --font-body: "Instrument Sans", "Helvetica Neue", sans-serif;
   --font-display: "League Spartan", "Arial Black", sans-serif;

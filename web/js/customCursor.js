@@ -28,6 +28,23 @@ export function initCustomCursor() {
     "label[for]",
   ].join(", ");
   let isVisible = false;
+  let pointerX = -32;
+  let pointerY = -32;
+  let positionFrame = 0;
+
+  const renderPosition = () => {
+    cursor.style.transform = `translate3d(${pointerX}px, ${pointerY}px, 0)`;
+    positionFrame = 0;
+  };
+
+  const schedulePosition = (event) => {
+    pointerX = event.clientX;
+    pointerY = event.clientY;
+
+    if (!positionFrame) {
+      positionFrame = window.requestAnimationFrame(renderPosition);
+    }
+  };
 
   const setInteractiveState = (target) => {
     const isInteractive = Boolean(target?.closest?.(interactiveSelector));
@@ -49,10 +66,9 @@ export function initCustomCursor() {
   };
 
   window.addEventListener("pointermove", (event) => {
+    schedulePosition(event);
     showCursor();
     setInteractiveState(event.target);
-    cursor.style.left = `${event.clientX}px`;
-    cursor.style.top = `${event.clientY}px`;
   }, { passive: true });
 
   window.addEventListener("pointerdown", (event) => {

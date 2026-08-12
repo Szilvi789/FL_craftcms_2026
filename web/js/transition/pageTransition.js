@@ -3,7 +3,10 @@ export function initPageTransition({ mountPage, destroyCurrentPage, getActivePag
   const gsap = window.gsap;
   const html = document.documentElement;
   const transitionRoot = document.querySelector(".page-transition");
+  const transitionShade = transitionRoot?.querySelector(".page-transition__shade");
   const transitionWindow = transitionRoot?.querySelector(".page-transition__window");
+  const transitionLoader = transitionRoot?.querySelector("[data-page-transition-loader]");
+  const transitionLoaderCounter = transitionLoader?.querySelector("[data-page-transition-loader-counter]");
 
   if (
     typeof mountPage !== "function" ||
@@ -13,7 +16,7 @@ export function initPageTransition({ mountPage, destroyCurrentPage, getActivePag
     return;
   }
 
-  if (!barba || !gsap || !transitionRoot || !transitionWindow || window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+  if (!barba || !gsap || !transitionRoot || !transitionShade || !transitionWindow || window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
     return;
   }
 
@@ -22,7 +25,11 @@ export function initPageTransition({ mountPage, destroyCurrentPage, getActivePag
   const COVER_CLOSE_DURATION = 2000;
   const PAGE_CHANGE_HOLD_DURATION = 1000;
   const COVER_OPEN_DURATION = 2000;
+  const RETURN_CLOSE_PROGRESS = 18;
+  const RETURN_MEDIA_PROGRESS = 92;
+  const transitionProgress = { value: 0 };
   let isTransitioning = false;
+  let isReturningHome = false;
 
   const wait = (ms) => new Promise((resolve) => {
     window.setTimeout(resolve, ms);
@@ -41,6 +48,74 @@ export function initPageTransition({ mountPage, destroyCurrentPage, getActivePag
       onInterrupt: resolve,
     });
   });
+
+  const clampProgress = (value) => Math.min(100, Math.max(0, Number(value) || 0));
+
+  const renderTransitionProgress = (value) => {
+    if (!transitionLoader || !transitionLoaderCounter) {
+      return;
+    }
+
+    const roundedValue = Math.round(clampProgress(value));
+    transitionProgress.value = roundedValue;
+    transitionLoaderCounter.textContent = String(roundedValue);
+    transitionLoader.setAttribute("aria-valuenow", String(roundedValue));
+    transitionLoader.setAttribute("aria-valuetext", `${roundedValue} percent`);
+  };
+
+  const showTransitionLoader = () => {
+    if (!transitionLoader) {
+      return;
+    }
+
+    gsap.killTweensOf(transitionLoader);
+    gsap.killTweensOf(transitionProgress);
+    transitionLoader.hidden = false;
+    gsap.set(transitionLoader, { autoAlpha: 1 });
+    renderTransitionProgress(0);
+  };
+
+  const tweenTransitionProgress = (value, duration = 0.3) => {
+    if (!isReturningHome || !transitionLoader) {
+      return Promise.resolve();
+    }
+
+    gsap.killTweensOf(transitionProgress);
+
+    return tweenTo(transitionProgress, {
+      value: clampProgress(value),
+      duration,
+      ease: "power1.out",
+      onUpdate: () => renderTransitionProgress(transitionProgress.value),
+    });
+  };
+
+  const setHomeMediaProgress = (value) => {
+    if (!isReturningHome) {
+      return;
+    }
+
+    const mediaProgress = clampProgress(value);
+    const overallProgress = RETURN_CLOSE_PROGRESS + (
+      (mediaProgress / 100) * (RETURN_MEDIA_PROGRESS - RETURN_CLOSE_PROGRESS)
+    );
+    renderTransitionProgress(overallProgress);
+  };
+
+  const hideTransitionLoader = async () => {
+    if (!transitionLoader || transitionLoader.hidden) {
+      return;
+    }
+
+    gsap.killTweensOf(transitionLoader);
+    await tweenTo(transitionLoader, {
+      autoAlpha: 0,
+      duration: 0.24,
+      ease: "power2.out",
+    });
+    transitionLoader.hidden = true;
+    gsap.set(transitionLoader, { clearProps: "opacity,visibility" });
+  };
 
   const fullscreenElement = () => document.fullscreenElement || document.webkitFullscreenElement;
 
@@ -141,16 +216,33 @@ export function initPageTransition({ mountPage, destroyCurrentPage, getActivePag
   const resetTransitionState = () => {
     transitionRoot.classList.remove("is-active");
     html.classList.remove("is-barba-transitioning");
+    gsap.killTweensOf(transitionShade);
     gsap.killTweensOf(transitionWindow);
+    gsap.killTweensOf(transitionLoader);
+    gsap.killTweensOf(transitionProgress);
+    gsap.set(transitionShade, {
+      clearProps: "opacity,willChange",
+    });
     gsap.set(transitionWindow, {
       clearProps: "transform",
     });
+    if (transitionLoader) {
+      transitionLoader.hidden = true;
+      gsap.set(transitionLoader, { clearProps: "opacity,visibility" });
+    }
+    renderTransitionProgress(0);
     isTransitioning = false;
+    isReturningHome = false;
   };
 
   const closeCover = async () => {
     const coverScale = getCoverScale(1.35);
+    gsap.killTweensOf(transitionShade);
     gsap.killTweensOf(transitionWindow);
+    gsap.set(transitionShade, {
+      opacity: 0,
+      willChange: "opacity",
+    });
     gsap.set(transitionWindow, {
       scale: coverScale,
       force3D: true,
@@ -159,24 +251,41 @@ export function initPageTransition({ mountPage, destroyCurrentPage, getActivePag
     html.classList.add("is-barba-transitioning");
     await nextFrame();
 
-    await tweenTo(transitionWindow, {
-      scale: 1,
-      duration: COVER_CLOSE_DURATION / 1000,
-      ease: "power2.inOut",
-    });
+    await Promise.all([
+      tweenTo(transitionWindow, {
+        scale: 1,
+        duration: COVER_CLOSE_DURATION / 1000,
+        ease: "power2.inOut",
+      }),
+      tweenTo(transitionShade, {
+        opacity: 1,
+        duration: COVER_CLOSE_DURATION / 1000,
+        ease: "power2.inOut",
+      }),
+    ]);
   };
 
   const openCover = async () => {
     const coverScale = getCoverScale(1.35);
 
-    await tweenTo(transitionWindow, {
-      scale: coverScale,
-      duration: COVER_OPEN_DURATION / 1000,
-      ease: "power2.inOut",
-    });
+    await Promise.all([
+      tweenTo(transitionWindow, {
+        scale: coverScale,
+        duration: COVER_OPEN_DURATION / 1000,
+        ease: "power2.inOut",
+      }),
+      tweenTo(transitionShade, {
+        opacity: 0,
+        duration: COVER_OPEN_DURATION / 1000,
+        ease: "power2.inOut",
+      }),
+    ]);
 
     transitionRoot.classList.remove("is-active");
     html.classList.remove("is-barba-transitioning");
+    gsap.set(transitionShade, {
+      clearProps: "opacity,willChange",
+    });
     gsap.set(transitionWindow, {
       clearProps: "transform",
     });
@@ -206,6 +315,35 @@ export function initPageTransition({ mountPage, destroyCurrentPage, getActivePag
     );
   };
 
+  const getUrlPathname = (url = {}) => {
+    const candidate = url.href || url.path || "";
+
+    try {
+      return new URL(candidate, window.location.href).pathname;
+    } catch (error) {
+      return "";
+    }
+  };
+
+  const shouldTrackHomeReturn = (current, next, trigger) => {
+    if (!current?.namespace || current.namespace === "home") {
+      return false;
+    }
+
+    const homeLink = document.querySelector(".site-home-link");
+    const homePathname = homeLink ? getUrlPathname({ href: homeLink.href }) : "/";
+    const nextPathname = getUrlPathname(next?.url);
+    const triggeredByHomeNavigation = Boolean(
+      trigger?.closest?.(".site-home-link, .site-back-link")
+    );
+
+    return (
+      next?.namespace === "home" ||
+      triggeredByHomeNavigation ||
+      (Boolean(nextPathname) && nextPathname === homePathname)
+    );
+  };
+
   barba.init({
     preventRunning: true,
     prevent: ({ href }) => {
@@ -224,6 +362,12 @@ export function initPageTransition({ mountPage, destroyCurrentPage, getActivePag
       async leave(data) {
         try {
           isTransitioning = true;
+          isReturningHome = shouldTrackHomeReturn(data.current, data.next, data.trigger);
+
+          if (isReturningHome) {
+            showTransitionLoader();
+          }
+
           await exitFullscreenIfNeeded();
           const currentPageApi = getActivePageApi();
 
@@ -238,7 +382,12 @@ export function initPageTransition({ mountPage, destroyCurrentPage, getActivePag
               : Promise.resolve(),
           ]);
 
-          await closeCover();
+          await Promise.all([
+            closeCover(),
+            isReturningHome
+              ? tweenTransitionProgress(RETURN_CLOSE_PROGRESS, COVER_CLOSE_DURATION / 1000)
+              : Promise.resolve(),
+          ]);
           destroyCurrentPage();
           data.current.container.remove();
         } catch (error) {
@@ -272,12 +421,21 @@ export function initPageTransition({ mountPage, destroyCurrentPage, getActivePag
             pageApi &&
             typeof pageApi.prepareRevealForTransition === "function"
           ) {
-            await pageApi.prepareRevealForTransition();
+            await pageApi.prepareRevealForTransition({
+              onProgress: isReturningHome ? setHomeMediaProgress : null,
+            });
             await nextFrame();
           }
 
+          if (isReturningHome && data.next.namespace === "home") {
+            await tweenTransitionProgress(100, 0.28);
+          }
+
           await wait(PAGE_CHANGE_HOLD_DURATION);
-          await openCover();
+          await Promise.all([
+            openCover(),
+            isReturningHome ? hideTransitionLoader() : Promise.resolve(),
+          ]);
 
           if (data.next.namespace !== "home") {
             await Promise.all([
@@ -291,6 +449,7 @@ export function initPageTransition({ mountPage, destroyCurrentPage, getActivePag
           }
 
           isTransitioning = false;
+          isReturningHome = false;
         } catch (error) {
           resetTransitionState();
           throw error;

@@ -12,12 +12,22 @@
   visibility: visible;
 }
 
+.page-transition__shade {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background: #000000;
+  opacity: 0;
+  will-change: opacity;
+}
+
 .page-transition__window {
   position: absolute;
   top: var(--page-transition-hole-top, 12vh);
   left: var(--page-transition-hole-left, 55vw);
   width: var(--page-transition-hole-size, 18vw);
   aspect-ratio: 1;
+  z-index: 1;
   overflow: visible;
   background: transparent;
   transform-origin: center center;
@@ -25,6 +35,41 @@
   will-change: transform;
   backface-visibility: hidden;
   isolation: isolate;
+}
+
+.page-transition__loader {
+  position: fixed;
+  right: clamp(1rem, 2vw, 1.75rem);
+  bottom: clamp(1rem, 2vw, 1.5rem);
+  z-index: 2;
+  display: flex;
+  align-items: baseline;
+  justify-content: flex-end;
+  color: #111111;
+  font-family: var(--font-display, var(--font-body));
+  font-size: clamp(2.4rem, 6vw, 6.5rem);
+  font-weight: 750;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.065em;
+  line-height: 0.78;
+  pointer-events: none;
+}
+
+.page-transition__loader[hidden] {
+  display: none;
+}
+
+.page-transition__loader-counter {
+  display: block;
+  min-width: 3ch;
+  text-align: right;
+}
+
+.page-transition__loader-unit {
+  display: block;
+  margin-left: 0.08em;
+  font-size: 0.42em;
+  letter-spacing: -0.02em;
 }
 
 .page-transition__mask {

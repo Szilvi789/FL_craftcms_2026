@@ -1,3 +1,29 @@
-<p class="info-text">
- Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
-</p>
+{% set panelEntry = panelContentEntry|default(null) %}
+{% set panelValue = panelEntry ? attribute(panelEntry, 'infoText') : null %}
+{% set panelPlainText = panelValue ? (panelValue|striptags|trim) : '' %}
+{% set infoImage = panelEntry ? attribute(panelEntry, 'infoImage').one() : null %}
+{% set imageAlt = infoImage and infoImage.alt ? infoImage.alt|trim : '' %}
+
+<div class="info-content{% if infoImage %} info-content--has-image{% endif %}">
+  <div class="info-text panel-rich-text">
+    {% if panelPlainText %}
+      {{ panelValue }}
+    {% else %}
+      <p>Add formatted biography and contact information in Home → Info.</p>
+    {% endif %}
+  </div>
+
+  {% if infoImage %}
+    <figure class="info-content__figure">
+      <img
+        class="info-content__image"
+        src="{{ infoImage.url|e('html_attr') }}"
+        alt="{{ imageAlt|e('html_attr') }}"
+        width="{{ infoImage.width }}"
+        height="{{ infoImage.height }}"
+        loading="lazy"
+        decoding="async"
+      >
+    </figure>
+  {% endif %}
+</div>

@@ -1,0 +1,16 @@
+columnSuffix: null
+handle: imprintAddress
+instructions: 'Enter the complete service address and location of the trade licence. Use a new line for street, postcode/city, and country.'
+name: 'Business Address'
+searchable: false
+settings:
+  byteLimit: null
+  charLimit: null
+  code: false
+  initialRows: 3
+  multiline: true
+  placeholder: "Street and number\nPostcode City\nAustria"
+  uiMode: normal
+translationKeyFormat: null
+translationMethod: none
+type: craft\fields\PlainText

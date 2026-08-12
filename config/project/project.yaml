@@ -1,4 +1,4 @@
-dateModified: 1785515511
+dateModified: 1786540302
 email:
   fromEmail: mail@szilviavarga.eu
   fromName: fl_craftcms_2026
@@ -14,39 +14,70 @@ fs:
 meta:
   __names__:
     0c9a682e-74b0-41d6-9634-3425aa21eeb0: Caption # Caption
+    1ba8daa8-f0fd-4f12-93af-1b0fb5421e5a: 'VAT ID (UID)' # VAT ID (UID)
     3c40c666-6a3f-4248-9cde-d3f7895e503c: Homepage # Homepage
     3c97cebf-a126-4d9a-b681-f07555f654c8: 'Initial Background Media' # Initial Background Media
     3d7bc8ef-b52a-4233-96fa-a4d276ad46fa: 'Contact Page Details' # Contact Page Details
+    3f076796-3bfe-41c5-93bd-56d6e9e357be: 'Business Address' # Business Address
     4d45c449-648c-43d4-b7c2-0dc057e89950: 'Hero Image' # Hero Image
     5b385bdf-f28b-4f53-beab-c2c5cb51c4dc: 'Insta Link' # Insta Link
-    6f60fadc-a5ee-4973-9e2f-3b70ae61c2e6: HEXColour # HEXColour
+    5fd27880-c506-4848-997a-f3b7e62c4480: 'Log Retention Period' # Log Retention Period
     8d8e6f92-d122-47c2-b662-e62fc423eeb4: Text # Text
+    8d44d62e-4945-4ace-aaaa-d575a8ea1f81: 'Contact Requests' # Contact Requests
     9c28928f-b9f7-4776-ae69-e62da16e7bb3: Email # Email
     24c4f75f-97a9-4865-98c0-039bb57b8b32: 'Florian Lechner' # Florian Lechner
     34b68727-d9fc-4be6-92a4-6433fc5e77ad: Image # Image
     042ec6e4-cb40-4199-a50d-c9f6d034781e: 'Image Placement' # Image Placement
+    49c7f0ae-2c45-4b60-9734-33bc40410436: 'Supervisory / Trade Authority' # Supervisory / Trade Authority
     50b6dfdd-db4f-452d-b0bb-792599d349f5: 'Project Blocks' # Project Blocks
+    66f02885-d581-4f48-9319-121e6a53970a: 'Additional Privacy Information' # Additional Privacy Information
     84af7e31-2c0a-418e-821b-30fca09c491b: Homepage # Homepage
     89eecf69-1f6b-495c-b671-4d59025672df: 'Image&Video' # Image&Video
+    174a91cf-a966-4253-af48-70c373ed8a9c: 'Encrypted Data Transmission' # Encrypted Data Transmission
     295a13d8-58ef-46ad-ac11-6bd8a6702105: fl_craftcms_2026 # fl_craftcms_2026
+    588c5d9e-3a68-433f-ac63-9378651e6e71: 'Display and Navigation Typeface' # Display and Navigation Typeface
+    738f63b8-8cf1-415a-8b31-da51e55e4977: 'Copyright and External Links' # Copyright and External Links
     0776be5d-4a08-4d09-8fa6-976025b42e0f: Client # Client
+    015034ef-9b87-42d4-9830-08d80aa079ab: Telephone # Telephone
+    41303da7-9812-4a15-a992-accf28f14774: Cookies # Cookies
+    47257fee-6ee5-4a98-9137-4855e8f9e2cc: 'Contact Request Retention' # Contact Request Retention
     93655f07-3272-4c7f-9e15-9c554bde1854: Text # Text
     907201b9-f1de-459d-b84e-382b577392fa: 'Cover Hole Size Width' # Cover Hole Size Width
     05914983-d90d-4565-9af8-b84b81587ad3: ContactPage # ContactPage
     32674024-eef6-4b0e-b7d2-f656f0728272: Projects # Projects
     44545415-e00b-4ee8-8512-2ab38b23f0ff: Project # Project
+    a2af039d-9f9c-4c23-bf66-eeb6e496698e: 'Professional Membership' # Professional Membership
+    a2fd0f11-2067-4e03-ac3a-6934e6bc16b3: 'Privacy Policy Last Updated' # Privacy Policy Last Updated
     a8c5aee7-302b-47d7-a6f5-158cbebd8000: 'Public Schema' # Public Schema
+    a67c34bf-b506-4e28-9e36-5809ad9cae21: 'Business Activity / Professional Title' # Business Activity / Professional Title
     a73c3bd0-66d2-45f4-8f4a-e5c9fef3ec9d: 'Project Media' # Project Media
     a4767100-10cc-4b48-87bd-2246e9965fd8: 'Project Type' # Project Type
+    b5ac3ffb-e00d-4774-81a7-dee9cb2e195c: 'Legal Form' # Legal Form
     b9f5d63d-5ae1-495c-8d4a-09042187d7fc: Description # Description
     b9f5d63d-5ae1-4950-a8d4-09042187d7fc: Description # Description
+    b67c4011-c57f-45d4-bf6d-165f8c1e587e: 'Body and Editorial Typeface' # Body and Editorial Typeface
+    cb41f9ed-bbc8-4eee-91fe-c084061a326a: 'External Content Delivery (jsDelivr)' # External Content Delivery (jsDelivr)
+    ce326a77-7485-4661-92d6-136ff2651bc0: 'Info Text' # Info Text
+    d0c3cd63-94ce-4bac-8b96-52afc8082071: 'Your Data Protection Rights' # Your Data Protection Rights
     d529b2cf-5512-4ec4-a991-d60c5ed92320: 'Cover Hole Left' # Cover Hole Left
+    d2290e65-db58-4380-b8f0-11250fa2049e: 'Info Image' # Info Image
     d4442f70-1a78-46d9-baf3-739d429852e5: Year # Year
     e0967947-c575-468b-a978-14260dcaf746: 'Image Size' # Image Size
+    e50ab27d-925d-4779-970b-1f658d24abfb: 'Developer Website' # Developer Website
+    e418f4b4-0a14-4fe1-a60a-6d44b85ae477: 'Privacy Contact Email Override' # Privacy Contact Email Override
     ebc14517-892e-49d1-8922-4b4b73dc1: 'External Link' # External Link
     ebc14517-892e-49e0-bb3d-cb2762d2df8f: 'External Link' # External Link
+    eca696d0-4b82-4604-9097-9a48f28852d2: 'Web Server Log Files' # Web Server Log Files
+    ee958aad-2a6b-4abe-a37f-2302c726da9a: 'Background Color' # Background Color
+    f0168b5c-b18d-4126-b38e-5ee45c296ef6: 'Email Override' # Email Override
+    f02dd302-6c90-4134-b484-e3925a21e8b4: 'Media Owner and Publisher' # Media Owner and Publisher
     fec4bc85-219e-4ed8-acee-07b86e13c38c: 'Cover Hole Top' # Cover Hole Top
+    ff3ef4f2-1862-4eb0-866b-dd0dcc7f1e02: 'Background Image' # Background Image
 plugins:
+  ckeditor:
+    edition: standard
+    enabled: true
+    schemaVersion: 5.0.0.1
   contact-form:
     edition: standard
     enabled: true

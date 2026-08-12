@@ -1,0 +1,16 @@
+columnSuffix: null
+handle: imprintProfessionalMembership
+instructions: 'Enter the applicable chamber and professional body, for example Wirtschaftskammer Wien, Landesinnung Wien der Berufsfotografie.'
+name: 'Professional Membership'
+searchable: false
+settings:
+  byteLimit: null
+  charLimit: null
+  code: false
+  initialRows: 4
+  multiline: false
+  placeholder: 'Wirtschaftskammer …, Landesinnung …'
+  uiMode: normal
+translationKeyFormat: null
+translationMethod: none
+type: craft\fields\PlainText

@@ -3,7 +3,6 @@ export function initProjectPage(root = document) {
   const { signal } = abortController;
   const { gsap } = window;
   const pageRoot = root.querySelector(".project");
-  const heroBackground = root.querySelector(".project-intro__background");
   const heroBackgroundFrame = root.querySelector(".project-intro__background-frame");
   const primaryIntroTargets = Array.from(root.querySelectorAll(".project-intro__content > *:not(.project-description)"))
     .filter((item) => window.getComputedStyle(item).display !== "none");
@@ -15,10 +14,6 @@ export function initProjectPage(root = document) {
   const ENTER_OFFSET_Y = -44;
   const ENTER_DURATION = 0.75;
   const LEAVE_DURATION = 0.4;
-  const HERO_DOCK_DURATION = 1.05;
-  const PRIMARY_TEXT_DELAY = 0.92;
-  const SECONDARY_TEXT_DELAY = 1.12;
-  const BODY_TEXT_DELAY = 1.02;
   const SCROLL_TO_TOP_DURATION = 0.8;
   const HERO_EXPAND_DURATION = 0.82;
   let isPreparedForTransition = false;
@@ -107,22 +102,6 @@ export function initProjectPage(root = document) {
     };
   };
 
-  const setBackgroundStartState = () => {
-    if (!gsap || !heroBackgroundFrame || !isDesktopLayout()) {
-      return;
-    }
-
-    gsap.killTweensOf(heroBackgroundFrame);
-    gsap.set(heroBackgroundFrame, {
-      top: 0,
-      left: 0,
-      right: "auto",
-      bottom: "auto",
-      width: window.innerWidth,
-      height: window.innerHeight,
-    });
-  };
-
   const syncDockedBackground = () => {
     if (!gsap || !heroBackgroundFrame || !isDesktopLayout()) {
       return;
@@ -149,17 +128,9 @@ export function initProjectPage(root = document) {
     }
 
     setEnterStartState();
-    setBackgroundStartState();
+    syncDockedBackground();
 
     const timeline = gsap.timeline();
-
-    if (heroBackgroundFrame && isDesktopLayout()) {
-      timeline.to(heroBackgroundFrame, {
-        ...getDockedBackgroundState(),
-        duration: HERO_DOCK_DURATION,
-        ease: "power3.inOut",
-      }, 0);
-    }
 
     if (primaryIntroTargets.length) {
       timeline.to(primaryIntroTargets, {
@@ -168,7 +139,7 @@ export function initProjectPage(root = document) {
         duration: ENTER_DURATION,
         ease: "power2.out",
         stagger: 0.05,
-      }, heroBackgroundFrame && isDesktopLayout() ? PRIMARY_TEXT_DELAY : 0);
+      }, 0);
     }
 
     if (secondaryIntroTargets.length) {
@@ -178,7 +149,7 @@ export function initProjectPage(root = document) {
         duration: ENTER_DURATION,
         ease: "power2.out",
         stagger: 0.05,
-      }, heroBackgroundFrame && isDesktopLayout() ? SECONDARY_TEXT_DELAY : 0.12);
+      }, 0.12);
     }
 
     if (bodyTextTargets.length) {
@@ -188,10 +159,8 @@ export function initProjectPage(root = document) {
         duration: ENTER_DURATION,
         ease: "power2.out",
         stagger: 0.04,
-      }, heroBackgroundFrame && isDesktopLayout() ? BODY_TEXT_DELAY : 0.08);
+      }, 0.08);
     }
-
-
     await new Promise((resolve) => {
       timeline.eventCallback("onComplete", resolve);
       timeline.eventCallback("onInterrupt", resolve);
@@ -239,6 +208,7 @@ export function initProjectPage(root = document) {
     prepareEnterForTransition() {
       isPreparedForTransition = true;
       setEnterStartState();
+      syncDockedBackground();
     },
     async animateEnter() {
       isPreparedForTransition = false;

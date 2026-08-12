@@ -1,0 +1,45 @@
+columnSuffix: null
+handle: privacyCdnText
+instructions: 'The current site loads Barba.js from jsDelivr. Keep this disclosure accurate if that dependency or provider changes; clear the field only after the external request has been removed.'
+name: 'External Content Delivery (jsDelivr)'
+searchable: false
+settings:
+  availableTransforms: '*'
+  availableVolumes: '*'
+  characterLimit: null
+  css: null
+  cssFile: null
+  defaultTransform: null
+  defaultUploadLocationSubpath: null
+  defaultUploadLocationVolume: null
+  fullGraphqlData: true
+  headingLevels: false
+  imageEntryTypeUid: null
+  imageFieldUid: null
+  imageMode: img
+  js: null
+  jsFile: null
+  options: null
+  parseEmbeds: false
+  purifierConfig: null
+  purifyHtml: true
+  showUnpermittedFiles: false
+  showUnpermittedVolumes: false
+  showWordCount: false
+  sourceEditingGroups:
+    - __ADMINS__
+  toolbar:
+    - bold
+    - italic
+    - underline
+    - link
+    - '|'
+    - bulletedList
+    - numberedList
+    - '|'
+    - undo
+    - redo
+  wordLimit: null
+translationKeyFormat: null
+translationMethod: none
+type: craft\ckeditor\Field

@@ -6,14 +6,19 @@
 .reflow-letter,
 .reflow-text__space {
   display: inline-block;
-  overflow: hidden;
   max-width: none;
   line-height: inherit;
   vertical-align: bottom;
   will-change: width, opacity, transform;
 }
 
+.reflow-letter {
+  overflow: visible;
+  clip-path: inset(-0.18em 0);
+}
+
 .reflow-text__space {
+  overflow: hidden;
   white-space: pre;
 }
 

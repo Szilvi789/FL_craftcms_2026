@@ -1,0 +1,45 @@
+columnSuffix: null
+handle: privacyCookiesText
+instructions: 'Describe cookies and similar technologies actually used by the website. The supplied example reflects the current Craft contact form and no analytics or marketing cookies.'
+name: Cookies
+searchable: false
+settings:
+  availableTransforms: '*'
+  availableVolumes: '*'
+  characterLimit: null
+  css: null
+  cssFile: null
+  defaultTransform: null
+  defaultUploadLocationSubpath: null
+  defaultUploadLocationVolume: null
+  fullGraphqlData: true
+  headingLevels: false
+  imageEntryTypeUid: null
+  imageFieldUid: null
+  imageMode: img
+  js: null
+  jsFile: null
+  options: null
+  parseEmbeds: false
+  purifierConfig: null
+  purifyHtml: true
+  showUnpermittedFiles: false
+  showUnpermittedVolumes: false
+  showWordCount: false
+  sourceEditingGroups:
+    - __ADMINS__
+  toolbar:
+    - bold
+    - italic
+    - underline
+    - link
+    - '|'
+    - bulletedList
+    - numberedList
+    - '|'
+    - undo
+    - redo
+  wordLimit: null
+translationKeyFormat: null
+translationMethod: none
+type: craft\ckeditor\Field

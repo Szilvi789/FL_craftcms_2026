@@ -1,0 +1,10 @@
+columnSuffix: null
+handle: homepageBackgroundColor
+instructions: 'Choose any solid color for the Homepage project canvas. This color remains behind the image and is shown whenever no background image is selected.'
+name: 'Background Color'
+searchable: false
+settings:
+  allowCustomColors: true
+translationKeyFormat: null
+translationMethod: none
+type: craft\fields\Color

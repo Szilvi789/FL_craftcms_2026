@@ -1,0 +1,29 @@
+columnSuffix: null
+handle: imprintDeveloperWebsite
+instructions: 'Optional website linked from the fixed credit “Szilvia Varga”.'
+name: 'Developer Website'
+searchable: false
+settings:
+  fullGraphqlData: true
+  maxLength: 255
+  showLabelField: false
+  typeSettings:
+    __assoc__:
+      -
+        - url
+        -
+          __assoc__:
+            -
+              - allowRootRelativeUrls
+              - false
+            -
+              - allowAnchors
+              - false
+            -
+              - allowCustomSchemes
+              - false
+  types:
+    - url
+translationKeyFormat: null
+translationMethod: none
+type: craft\fields\Link

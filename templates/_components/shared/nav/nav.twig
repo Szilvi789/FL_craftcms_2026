@@ -1,7 +1,9 @@
 {% set layout = navLayout|default('full') %}
+{% set behavior = navBehavior|default('static') %}
 {% set contactHref = navContactHref|default('') %}
+{% set showPanels = layout not in ['contact', 'home-only', 'fl-fullscreen'] %}
 
-<nav class="site-nav site-nav--layout-{{ layout }} site-nav--theme-{{ navTheme|default('black') }} site-nav--behavior-{{ navBehavior|default('static') }}" aria-label="Primary">
+<nav class="site-nav site-nav--layout-{{ layout }} site-nav--theme-{{ navTheme|default('black') }}{% if behavior != 'static' %} site-nav--behavior-{{ behavior }}{% endif %}" aria-label="Primary">
   {% if navBackHref is defined and navBackHref %}
     <a class="site-nav__link site-back-link" href="{{ navBackHref }}">
       <span class="site-back-link__icon" aria-hidden="true">
@@ -31,29 +33,19 @@
       </a>
     {% endif %}
   {% else %}
-  {% if layout not in ['home-only', 'fl-fullscreen'] %}
-    <button class="site-nav__link site-nav__button site-panel-toggle" type="button" aria-expanded="false" aria-controls="site-info-panel">
-      Info
-    </button>
-    <a class="site-nav__link" href="/contact">
-      Contact
-    </a>
-  {% endif %}
-  <a class="site-home-link site-nav__link" href="{{ siteUrl }}#home-reveal" aria-label="Home">FL</a>
-  {% if layout == 'fl-fullscreen' %}
-    <button class="site-nav__button site-fullscreen-toggle" type="button" aria-pressed="false" aria-label="Enter fullscreen" title="Enter fullscreen">
-      <span class="site-fullscreen-toggle__frame" aria-hidden="true">
-        <svg class="site-fullscreen-toggle__icon" viewBox="0 0 24 24" aria-hidden="true">
-          <path d="M3 9V3h6M21 9V3h-6M3 15v6h6M21 15v6h-6" fill="none" stroke="currentColor" stroke-linecap="square" stroke-width="0.8"/>
-        </svg>
-        <svg class="site-fullscreen-toggle__plus" viewBox="0 0 24 24" aria-hidden="true">
-          <path d="M12 7v10M7 12h10" fill="none" stroke="currentColor" stroke-linecap="square" stroke-width="1.1"/>
-        </svg>
-      </span>
-    </button>
-  {% endif %}
-  {% if layout not in ['home-only', 'fl-fullscreen'] %}
-        <button class="site-nav__button site-fullscreen-toggle site-fullscreen-toggle--inline" type="button" aria-pressed="false" aria-label="Enter fullscreen" title="Enter fullscreen">
+    {% if showPanels %}
+      <button class="site-nav__link site-nav__button site-panel-toggle" type="button" aria-expanded="false" aria-controls="site-info-panel">
+        Info
+      </button>
+      <a class="site-nav__link" href="/contact">
+        Contact
+      </a>
+    {% endif %}
+
+    <a class="site-home-link site-nav__link" href="{{ siteUrl }}#home-reveal" aria-label="Home">FL</a>
+
+    {% if layout == 'fl-fullscreen' %}
+      <button class="site-nav__button site-fullscreen-toggle" type="button" aria-pressed="false" aria-label="Enter fullscreen" title="Enter fullscreen">
         <span class="site-fullscreen-toggle__frame" aria-hidden="true">
           <svg class="site-fullscreen-toggle__icon" viewBox="0 0 24 24" aria-hidden="true">
             <path d="M3 9V3h6M21 9V3h-6M3 15v6h6M21 15v6h-6" fill="none" stroke="currentColor" stroke-linecap="square" stroke-width="0.8"/>
@@ -63,33 +55,47 @@
           </svg>
         </span>
       </button>
-    <div class="site-nav__legal">
-      <button class="site-nav__link site-nav__button site-panel-toggle" type="button" aria-expanded="false" aria-controls="site-imprint-panel">
-        Imprint
+    {% elseif showPanels %}
+      <button class="site-nav__button site-fullscreen-toggle" type="button" aria-pressed="false" aria-label="Enter fullscreen" title="Enter fullscreen">
+        <span class="site-fullscreen-toggle__frame" aria-hidden="true">
+          <svg class="site-fullscreen-toggle__icon" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M3 9V3h6M21 9V3h-6M3 15v6h6M21 15v6h-6" fill="none" stroke="currentColor" stroke-linecap="square" stroke-width="0.8"/>
+          </svg>
+          <svg class="site-fullscreen-toggle__plus" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M12 7v10M7 12h10" fill="none" stroke="currentColor" stroke-linecap="square" stroke-width="1.1"/>
+          </svg>
+        </span>
       </button>
-      <span class="site-nav__separator" aria-hidden="true">/</span>
-      <button class="site-nav__link site-nav__button site-panel-toggle" type="button" aria-expanded="false" aria-controls="site-privacy-panel">
-        Privacy
-      </button>
-    </div>
-  {% endif %}
+
+      <div class="site-nav__legal">
+        <button class="site-nav__link site-nav__button site-panel-toggle" type="button" aria-expanded="false" aria-controls="site-imprint-panel">
+          Imprint
+        </button>
+        <span class="site-nav__separator" aria-hidden="true">/</span>
+        <button class="site-nav__link site-nav__button site-panel-toggle" type="button" aria-expanded="false" aria-controls="site-privacy-panel">
+          Privacy
+        </button>
+      </div>
+    {% endif %}
   {% endif %}
 </nav>
 
-<section class="site-info-panel" id="site-info-panel" aria-hidden="true">
-  <div class="site-info-panel__inner">
-    {% include "_components/info.twig" %}
-  </div>
-</section>
+{% if showPanels %}
+  <section class="site-info-panel" id="site-info-panel" aria-hidden="true">
+    <div class="site-info-panel__inner">
+      {% include "_components/info.twig" %}
+    </div>
+  </section>
 
-<section class="site-imprint-panel" id="site-imprint-panel" aria-hidden="true">
-  <div class="site-imprint-panel__inner">
-    {% include "_components/imprint.twig" %}
-  </div>
-</section>
+  <section class="site-imprint-panel" id="site-imprint-panel" aria-hidden="true">
+    <div class="site-imprint-panel__inner">
+      {% include "_components/imprint.twig" %}
+    </div>
+  </section>
 
-<section class="site-privacy-panel" id="site-privacy-panel" aria-hidden="true">
-  <div class="site-privacy-panel__inner">
-    {% include "_components/privacy.twig" %}
-  </div>
-</section>
+  <section class="site-privacy-panel" id="site-privacy-panel" aria-hidden="true">
+    <div class="site-privacy-panel__inner">
+      {% include "_components/privacy.twig" %}
+    </div>
+  </section>
+{% endif %}

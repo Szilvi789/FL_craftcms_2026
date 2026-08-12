@@ -1,0 +1,16 @@
+columnSuffix: null
+handle: imprintBusinessActivity
+instructions: 'Enter the official business activity or professional designation, for example Berufsfotografie.'
+name: 'Business Activity / Professional Title'
+searchable: false
+settings:
+  byteLimit: null
+  charLimit: null
+  code: false
+  initialRows: 4
+  multiline: false
+  placeholder: 'e.g. Berufsfotografie'
+  uiMode: normal
+translationKeyFormat: null
+translationMethod: none
+type: craft\fields\PlainText

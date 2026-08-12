@@ -1,0 +1,37 @@
+columnSuffix: null
+handle: infoImage
+instructions: 'Optional. Select one image to display beside the Info text. Remove it to show a text-only layout. Set meaningful Alt Text on the selected asset when the image conveys information.'
+name: 'Info Image'
+searchable: false
+settings:
+  allowSelfRelations: false
+  allowSubfolders: true
+  allowUploads: true
+  allowedKinds:
+    - image
+  branchLimit: null
+  defaultPlacement: end
+  defaultUploadLocationSource: 'volume:a73c3bd0-66d2-45f4-8f4a-e5c9fef3ec9d' # Project Media
+  defaultUploadLocationSubpath: null
+  maintainHierarchy: false
+  maxRelations: 1
+  minRelations: null
+  previewMode: full
+  restrictFiles: true
+  restrictLocation: false
+  restrictedDefaultUploadSubpath: null
+  restrictedLocationSource: null
+  restrictedLocationSubpath: null
+  selectionLabel: 'Add Info image'
+  showSearchInput: true
+  showSiteMenu: false
+  showUnpermittedFiles: false
+  showUnpermittedVolumes: false
+  sources:
+    - 'volume:a73c3bd0-66d2-45f4-8f4a-e5c9fef3ec9d' # Project Media
+  targetSiteId: null
+  validateRelatedElements: false
+  viewMode: cards
+translationKeyFormat: null
+translationMethod: none
+type: craft\fields\Assets

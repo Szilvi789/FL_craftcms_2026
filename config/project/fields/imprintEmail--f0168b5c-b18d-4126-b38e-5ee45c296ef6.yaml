@@ -1,0 +1,10 @@
+columnSuffix: null
+handle: imprintEmail
+instructions: 'Optional. Leave this blank to use the Email field from Contact Page Details automatically.'
+name: 'Email Override'
+searchable: false
+settings:
+  placeholder: 'Uses the Contact email when empty'
+translationKeyFormat: null
+translationMethod: none
+type: craft\fields\Email

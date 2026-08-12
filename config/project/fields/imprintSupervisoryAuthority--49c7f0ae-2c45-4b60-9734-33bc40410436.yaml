@@ -1,0 +1,16 @@
+columnSuffix: null
+handle: imprintSupervisoryAuthority
+instructions: 'Enter the authority responsible for the trade licence. For a Vienna business, verify the responsible Magistratisches Bezirksamt.'
+name: 'Supervisory / Trade Authority'
+searchable: false
+settings:
+  byteLimit: null
+  charLimit: null
+  code: false
+  initialRows: 4
+  multiline: false
+  placeholder: 'e.g. Magistratisches Bezirksamt für den … Bezirk'
+  uiMode: normal
+translationKeyFormat: null
+translationMethod: none
+type: craft\fields\PlainText

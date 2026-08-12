@@ -1,0 +1,16 @@
+columnSuffix: null
+handle: imprintPublisherName
+instructions: 'Enter the operator’s full legal name, including any academic title that is part of the published name.'
+name: 'Media Owner and Publisher'
+searchable: false
+settings:
+  byteLimit: null
+  charLimit: null
+  code: false
+  initialRows: 4
+  multiline: false
+  placeholder: 'e.g. Mag. art. Firstname Lastname'
+  uiMode: normal
+translationKeyFormat: null
+translationMethod: none
+type: craft\fields\PlainText

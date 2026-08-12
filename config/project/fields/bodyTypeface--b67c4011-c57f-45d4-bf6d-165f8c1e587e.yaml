@@ -1,0 +1,44 @@
+columnSuffix: null
+handle: bodyTypeface
+instructions: 'Used automatically for project descriptions, Contact, Info, Imprint, Privacy, forms, and other longer text. The content roles stay fixed; this only changes the font family.'
+name: 'Body and Editorial Typeface'
+searchable: false
+settings:
+  customOptions: false
+  options:
+    -
+      __assoc__:
+        -
+          - label
+          - 'Instrument Sans — current, clean editorial'
+        -
+          - value
+          - instrumentSans
+        -
+          - default
+          - true
+    -
+      __assoc__:
+        -
+          - label
+          - 'Source Sans 3 — open and highly readable'
+        -
+          - value
+          - sourceSans3
+        -
+          - default
+          - false
+    -
+      __assoc__:
+        -
+          - label
+          - 'Manrope — compact and contemporary'
+        -
+          - value
+          - manrope
+        -
+          - default
+          - false
+translationKeyFormat: null
+translationMethod: none
+type: craft\fields\Dropdown

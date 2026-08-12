@@ -1,13 +1,17 @@
 .site-info-panel {
   position: fixed;
-  left: 40rem;
+  right: 1rem;
   bottom: 6rem;
+  left: clamp(18rem, 32vw, 40rem);
   z-index: 55;
   opacity: 0;
   visibility: hidden;
   pointer-events: none;
   --site-home-panel-opacity: 1;
   transform: translateY(calc(100% + 1rem));
+  max-height: calc(100dvh - 10.5rem);
+  overflow-y: auto;
+  overscroll-behavior: contain;
   transition:
     transform var(--duration-slow) var(--easing-standard),
     opacity var(--duration-base) ease,
@@ -15,13 +19,64 @@
 }
 
 .site-info-panel__inner {
-  width: min(42rem, 100%);
+  width: min(58rem, 100%);
+  margin-left: auto;
   padding: 1rem 1.5rem 1.05rem;
   color: #ffffff;
 }
 
-.site-info-panel__inner p {
+.info-content {
+  width: min(42rem, 100%);
+  margin-left: auto;
+}
+
+.info-content--has-image {
+  display: grid;
+  grid-template-columns: minmax(0, 1.35fr) minmax(12rem, 0.65fr);
+  gap: clamp(1.5rem, 3vw, 3rem);
+  align-items: start;
+  width: 100%;
+}
+
+.info-content__figure {
   margin: 0;
+}
+
+.info-content__image {
+  display: block;
+  width: 100%;
+  max-height: min(62dvh, 34rem);
+  object-fit: cover;
+}
+
+.panel-rich-text > * {
+  margin: 0 0 0.75em;
+}
+
+.panel-rich-text > :first-child {
+  margin-top: 0;
+}
+
+.panel-rich-text > :last-child {
+  margin-bottom: 0;
+}
+
+.panel-rich-text h2,
+.panel-rich-text h3 {
+  font-size: 1.1em;
+  font-weight: 700;
+  line-height: 1.15;
+}
+
+.panel-rich-text ul,
+.panel-rich-text ol {
+  padding-left: 1.3em;
+}
+
+.panel-rich-text a {
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 0.16em;
 }
 
 .site-info-panel.is-open {
@@ -47,12 +102,24 @@
   .site-info-panel {
     font-size: 0.8rem;
     right: 0.85rem;
-    bottom: 0.85rem;
+    bottom: clamp(7rem, 18dvh, 10rem);
     left: 0.85rem;
+    max-height: calc(82dvh - 4.5rem);
+    overflow-y: auto;
+    overscroll-behavior: contain;
   }
 
   .site-info-panel__inner {
     width: 100%;
     padding: 1rem 1rem 1.05rem;
+  }
+
+  .info-content--has-image {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 1.4rem;
+  }
+
+  .info-content__image {
+    max-height: none;
   }
 }

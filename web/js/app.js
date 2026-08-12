@@ -1,10 +1,10 @@
 import { initSiteUI } from "./scripts.js?v=13";
-import { initHomeHero } from "./home/homeHero.js?v=55";
-import { initProjectPage } from "./project/project.js?v=5";
+import { initHomeHero } from "./home/homeHero.js?v=56";
+import { initProjectPage } from "./project/project.js?v=6";
 import { init404Gallery } from "./404/404Gallery.js?v=2";
 import { initContactPage } from "./contact/contactPage.js?v=5";
-import { initPageTransition } from "./transition/pageTransition.js?v=5";
-import { initCustomCursor } from "./customCursor.js?v=2";
+import { initPageTransition } from "./transition/pageTransition.js?v=8";
+import { initCustomCursor } from "./customCursor.js?v=3";
 
 const pageInitializers = {
   home: initHomeHero,

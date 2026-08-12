@@ -1,5 +1,76 @@
+{% set panelEntry = panelContentEntry|default(null) %}
+{% set publisherName = panelEntry ? (attribute(panelEntry, 'imprintPublisherName') ?? '')|trim : '' %}
+{% set businessAddress = panelEntry ? (attribute(panelEntry, 'imprintAddress') ?? '')|trim : '' %}
+{% set phoneNumber = panelEntry ? (attribute(panelEntry, 'imprintPhone') ?? '')|trim : '' %}
+{% set phoneHref = phoneNumber ? phoneNumber|replace({' ': '', '-': '', '(': '', ')': '', '/': ''}) : '' %}
+{% set emailOverride = panelEntry ? (attribute(panelEntry, 'imprintEmail') ?? '')|trim : '' %}
+{% set legalForm = panelEntry ? (attribute(panelEntry, 'imprintLegalForm') ?? '')|trim : '' %}
+{% set businessActivity = panelEntry ? (attribute(panelEntry, 'imprintBusinessActivity') ?? '')|trim : '' %}
+{% set vatId = panelEntry ? (attribute(panelEntry, 'imprintVatId') ?? '')|trim : '' %}
+{% set professionalMembership = panelEntry ? (attribute(panelEntry, 'imprintProfessionalMembership') ?? '')|trim : '' %}
+{% set supervisoryAuthority = panelEntry ? (attribute(panelEntry, 'imprintSupervisoryAuthority') ?? '')|trim : '' %}
+{% set developerLink = panelEntry ? attribute(panelEntry, 'imprintDeveloperWebsite') : null %}
+{% set developerUrl = developerLink ? attribute(developerLink, 'getUrl', [], 'method') : null %}
+{% set copyrightValue = panelEntry ? attribute(panelEntry, 'imprintText') : null %}
+{% set copyrightPlainText = copyrightValue ? (copyrightValue|striptags|trim) : '' %}
+{% set legacyPlaceholder = 'Imprint details will live here. This can later be replaced with your legal notice, business address, and ownership details.' %}
+{% set contactEntry = craft.entries().section('contactpage').site(currentSite).one() %}
+{% set contactEmail = contactEntry ? (attribute(contactEntry, 'email') ?? '')|trim : '' %}
+{% set emailAddress = emailOverride ?: contactEmail %}
+
 <div class="imprint-text">
-  <p>
-    Imprint details will live here. This can later be replaced with your legal notice, business address, and ownership details.
-  </p>
+  <h2 class="imprint-text__title">Imprint</h2>
+
+  {% if publisherName or businessAddress or phoneNumber or emailAddress %}
+    <section class="imprint-text__section" aria-labelledby="imprint-publisher-heading">
+      <h3 class="imprint-text__heading" id="imprint-publisher-heading">Media owner and publisher</h3>
+      <address class="imprint-text__address">
+        {% if publisherName %}<span>{{ publisherName }}</span>{% endif %}
+        {% if businessAddress %}<span>{{ businessAddress|nl2br }}</span>{% endif %}
+        {% if phoneNumber %}<a href="tel:{{ phoneHref|e('html_attr') }}">{{ phoneNumber }}</a>{% endif %}
+        {% if emailAddress %}<a href="mailto:{{ emailAddress|e('html_attr') }}">{{ emailAddress }}</a>{% endif %}
+      </address>
+    </section>
+  {% endif %}
+
+  {% if legalForm or businessActivity or vatId %}
+    <section class="imprint-text__section" aria-labelledby="imprint-business-heading">
+      <h3 class="imprint-text__heading" id="imprint-business-heading">Business details</h3>
+      {% if legalForm %}<p><span class="imprint-text__label">Legal form:</span> {{ legalForm }}</p>{% endif %}
+      {% if businessActivity %}<p><span class="imprint-text__label">Business activity / professional title:</span> {{ businessActivity }}</p>{% endif %}
+      {% if vatId %}<p><span class="imprint-text__label">VAT ID:</span> {{ vatId }}</p>{% endif %}
+    </section>
+  {% endif %}
+
+  {% if professionalMembership or supervisoryAuthority or businessActivity %}
+    <section class="imprint-text__section" aria-labelledby="imprint-professional-heading">
+      <h3 class="imprint-text__heading" id="imprint-professional-heading">Professional information</h3>
+      {% if professionalMembership %}<p><span class="imprint-text__label">Professional membership:</span> {{ professionalMembership }}</p>{% endif %}
+      {% if supervisoryAuthority %}<p><span class="imprint-text__label">Supervisory / trade authority:</span> {{ supervisoryAuthority }}</p>{% endif %}
+      <p>
+        <span class="imprint-text__label">Applicable professional law:</span>
+        Austrian Trade Regulation Act (Gewerbeordnung 1994 – GewO), available via
+        <a href="https://www.ris.bka.gv.at/GeltendeFassung.wxe?Abfrage=Bundesnormen&amp;Gesetzesnummer=10007517">RIS</a>.
+      </p>
+    </section>
+  {% endif %}
+
+  <section class="imprint-text__section" aria-labelledby="imprint-development-heading">
+    <h3 class="imprint-text__heading" id="imprint-development-heading">Design and development</h3>
+    <p>
+      {% if developerUrl %}<a href="{{ developerUrl|e('html_attr') }}">Szilvia Varga</a>{% else %}Szilvia Varga{% endif %}
+    </p>
+  </section>
+
+  <section class="imprint-text__section imprint-text__section--last" aria-labelledby="imprint-copyright-heading">
+    <h3 class="imprint-text__heading" id="imprint-copyright-heading">Copyright and external links</h3>
+    <div class="panel-rich-text">
+      {% if copyrightPlainText and copyrightPlainText != legacyPlaceholder %}
+        {{ copyrightValue }}
+      {% else %}
+        <p>Unless otherwise indicated, the photographs and other content published on this website are protected by copyright. Any use beyond the limits permitted by law requires the prior consent of the respective rights holder. Rights in third-party content remain with the respective rights holders.</p>
+        <p>External links lead to content provided by third parties. If we become aware of unlawful content at a linked destination, we will remove the relevant link without delay.</p>
+      {% endif %}
+    </div>
+  </section>
 </div>

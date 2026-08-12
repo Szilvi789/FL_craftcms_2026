@@ -35,6 +35,13 @@
 {% set coverHoleTop = homeEntry and homeEntry.coverHoleTop ? homeEntry.coverHoleTop : '12vh' %}
 {% set coverHoleLeft = homeEntry and homeEntry.coverHoleLeft ? homeEntry.coverHoleLeft : '55vw' %}
 {% set coverHoleSizeWidth = homeEntry and homeEntry.coverHoleSizeWidth ? homeEntry.coverHoleSizeWidth : '18vw' %}
+{% set backgroundColorValue = homeEntry ? attribute(homeEntry, 'homepageBackgroundColor') : null %}
+{% set backgroundColor = backgroundColorValue ? backgroundColorValue.hex : '#000000' %}
+{% set backgroundTextColor = backgroundColorValue and backgroundColorValue.luma > 0.58 ? '#111111' : '#ffffff' %}
+{% set backgroundImage = homeEntry and attribute(homeEntry, 'homepageBackgroundImage') ? attribute(homeEntry, 'homepageBackgroundImage').one() : null %}
+{% set backgroundImageSmall = { width: 900, quality: 72 } %}
+{% set backgroundImageMedium = { width: 1600, quality: 74 } %}
+{% set backgroundImageLarge = { width: 2400, quality: 76 } %}
 
 <section
   class="home-hero"
@@ -63,7 +70,26 @@
 </section>
 
 {% if projectTiles %}
-  <section class="home-selected-work" aria-label="Projects" data-home-selected-work>
+  <section
+    class="home-selected-work{% if backgroundImage %} home-selected-work--has-background-image{% endif %}"
+    style="--home-background-color: {{ backgroundColor|e('html_attr') }}; --home-background-text-color: {{ backgroundTextColor|e('html_attr') }};"
+    aria-label="Projects"
+    data-home-selected-work
+  >
+    {% if backgroundImage %}
+      <div class="home-selected-work__background" aria-hidden="true">
+        <img
+          class="home-selected-work__background-media"
+          src="{{ backgroundImage.getUrl(backgroundImageMedium) }}"
+          srcset="{{ backgroundImage.getUrl(backgroundImageSmall) }} 900w, {{ backgroundImage.getUrl(backgroundImageMedium) }} 1600w, {{ backgroundImage.getUrl(backgroundImageLarge) }} 2400w"
+          sizes="100vw"
+          alt=""
+          loading="eager"
+          fetchpriority="high"
+          decoding="async"
+        >
+      </div>
+    {% endif %}
     <div class="home-selected-work__background-name" aria-hidden="true">{{ siteName }}</div>
     <div
       class="home-selected-work__viewport"

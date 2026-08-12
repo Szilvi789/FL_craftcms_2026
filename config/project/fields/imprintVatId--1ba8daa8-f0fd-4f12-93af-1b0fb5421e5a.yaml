@@ -1,0 +1,16 @@
+columnSuffix: null
+handle: imprintVatId
+instructions: 'Enter the Umsatzsteuer-Identifikationsnummer if one has been issued.'
+name: 'VAT ID (UID)'
+searchable: false
+settings:
+  byteLimit: null
+  charLimit: null
+  code: false
+  initialRows: 4
+  multiline: false
+  placeholder: 'e.g. ATU12345678'
+  uiMode: normal
+translationKeyFormat: null
+translationMethod: none
+type: craft\fields\PlainText

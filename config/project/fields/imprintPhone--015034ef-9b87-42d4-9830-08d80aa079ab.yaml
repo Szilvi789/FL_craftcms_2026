@@ -1,15 +1,15 @@
 columnSuffix: null
-handle: hexcolour
-instructions: 'A hexadecimal number.'
-name: HEXColour
+handle: imprintPhone
+instructions: 'Use an international format, for example +43 1 234567.'
+name: Telephone
 searchable: false
 settings:
   byteLimit: null
-  charLimit: 7
+  charLimit: null
   code: false
   initialRows: 4
   multiline: false
-  placeholder: '#486951'
+  placeholder: '+43 …'
   uiMode: normal
 translationKeyFormat: null
 translationMethod: none

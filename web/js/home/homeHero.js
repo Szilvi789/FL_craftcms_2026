@@ -26,6 +26,7 @@ export function initHomeHero(root = document) {
     "[data-home-grid-cell] img, [data-home-grid-cell] video"
   ));
   const counterState = { value: 0 };
+  const progressListeners = new Set();
   let introLetterEffects = [];
   let navLetterEffects = [];
   let backgroundNameEffect = null;
@@ -51,10 +52,13 @@ export function initHomeHero(root = document) {
 
   const setCounter = (value) => {
     counterState.value = value;
+    const roundedValue = Math.round(value);
 
     if (loaderCounter) {
-      loaderCounter.textContent = String(Math.round(value));
+      loaderCounter.textContent = String(roundedValue);
     }
+
+    progressListeners.forEach((listener) => listener(roundedValue));
   };
 
   const wait = (milliseconds) => new Promise((resolve) => {
@@ -188,7 +192,7 @@ export function initHomeHero(root = document) {
     }
 
     const removedLetters = backgroundNameEffect.letters
-      .filter(({ isProtected }) => !isProtected)
+      .filter(({ isProtected }) => !isProtected);
     const removedLetterTargets = removedLetters.map(({ element }) => element);
     const spaces = backgroundNameEffect.spaces;
     const spaceTargets = spaces.map(({ element }) => element);
@@ -266,13 +270,7 @@ export function initHomeHero(root = document) {
         return finishWithoutMotion();
       }
 
-      openingTimeline = gsap.timeline({
-        onComplete: () => {
-          gsap.set(hero, { autoAlpha: 0 });
-          isOpeningComplete = true;
-          infiniteGrid?.setEnabled(!isPanelOpen);
-        },
-      });
+      openingTimeline = gsap.timeline();
 
       openingTimeline.to(loader, {
         autoAlpha: 0,
@@ -349,6 +347,7 @@ export function initHomeHero(root = document) {
     introLetterEffects = [];
     navLetterEffects = [];
     backgroundNameEffect = null;
+    progressListeners.clear();
     gsap?.killTweensOf(counterState);
     gsap?.killTweensOf([loader, hole, hero, selectedWorkSection, siteNav]);
     gsap?.set([loader, hole, hero, selectedWorkSection, siteNav], { clearProps: "opacity,visibility,transform" });
@@ -417,8 +416,20 @@ export function initHomeHero(root = document) {
   return {
     destroy,
     reveal: runOpeningSequence,
-    prepareRevealForTransition: async () => {
-      await runOpeningSequence();
+    prepareRevealForTransition: async ({ onProgress } = {}) => {
+      if (typeof onProgress !== "function") {
+        await runOpeningSequence();
+        return;
+      }
+
+      progressListeners.add(onProgress);
+      onProgress(Math.round(counterState.value));
+
+      try {
+        await runOpeningSequence();
+      } finally {
+        progressListeners.delete(onProgress);
+      }
     },
     animateEnter: runOpeningSequence,
   };

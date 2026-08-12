@@ -54,8 +54,8 @@
             <p class="contact-page__direct-email">{{ emailAddress }}</p>
           {% endif %}
 
-          <div class="contact-page__socials" aria-label="Social links">
-            {% if instaUrl %}
+          {% if instaUrl %}
+            <div class="contact-page__socials" aria-label="Social links">
               <a
                 class="contact-page__social-icon"
                 href="{{ instaUrl }}"
@@ -72,25 +72,14 @@
                   </svg>
                 </span>
               </a>
-            {% else %}
-              <span class="contact-page__social-icon contact-page__social-icon--static" aria-hidden="true">
-                <span class="contact-page__social-icon-frame">
-                  <svg class="contact-page__social-icon-svg" viewBox="0 0 24 24" aria-hidden="true">
-                    <rect x="5.25" y="5.25" width="13.5" height="13.5" rx="3.5" fill="none" stroke="currentColor" stroke-width="1.6"/>
-                    <circle cx="12" cy="12" r="3.35" fill="none" stroke="currentColor" stroke-width="1.6"/>
-                    <circle cx="16.45" cy="7.75" r="0.95" fill="currentColor"/>
-                  </svg>
-                </span>
-              </span>
-            {% endif %}
-          </div>
+            </div>
+          {% endif %}
         </div>
       {% endif %}
     </div>
 
     <div
       class="contact-page__form-shell"
-      id="contact-form-panel"
       aria-hidden="{{ showForm ? 'false' : 'true' }}"
       data-contact-form-panel
     >

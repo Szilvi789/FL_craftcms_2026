@@ -1,5 +1,96 @@
+{% set panelEntry = panelContentEntry|default(null) %}
+{% set contactEntry = craft.entries().section('contactpage').site(currentSite).one() %}
+{% set contactEmail = contactEntry ? (attribute(contactEntry, 'email') ?? '')|trim : '' %}
+{% set emailOverride = panelEntry ? (attribute(panelEntry, 'privacyEmail') ?? '')|trim : '' %}
+{% set emailAddress = emailOverride ?: contactEmail %}
+{% set publisherName = panelEntry ? (attribute(panelEntry, 'imprintPublisherName') ?? '')|trim : '' %}
+{% set businessAddress = panelEntry ? (attribute(panelEntry, 'imprintAddress') ?? '')|trim : '' %}
+{% set tlsValue = panelEntry ? attribute(panelEntry, 'privacyTlsText') : null %}
+{% set logsValue = panelEntry ? attribute(panelEntry, 'privacyServerLogsText') : null %}
+{% set logRetention = panelEntry ? (attribute(panelEntry, 'privacyLogRetention') ?? '')|trim : '' %}
+{% set cookiesValue = panelEntry ? attribute(panelEntry, 'privacyCookiesText') : null %}
+{% set contactValue = panelEntry ? attribute(panelEntry, 'privacyContactText') : null %}
+{% set inquiryRetention = panelEntry ? (attribute(panelEntry, 'privacyInquiryRetention') ?? '')|trim : '' %}
+{% set cdnValue = panelEntry ? attribute(panelEntry, 'privacyCdnText') : null %}
+{% set additionalValue = panelEntry ? attribute(panelEntry, 'privacyText') : null %}
+{% set rightsValue = panelEntry ? attribute(panelEntry, 'privacyRightsText') : null %}
+{% set lastUpdated = panelEntry ? attribute(panelEntry, 'privacyLastUpdated') : null %}
+{% set legacyPlaceholder = 'Privacy details will live here. This can later be replaced with your data processing, cookie, and GDPR disclosures.' %}
+
 <div class="privacy-text">
-  <p>
-    Privacy details will live here. This can later be replaced with your data processing, cookie, and GDPR disclosures.
-  </p>
+  <h2 class="privacy-text__title">Privacy Policy</h2>
+
+  {% if publisherName or businessAddress or emailAddress %}
+    <section class="privacy-text__section" aria-labelledby="privacy-controller-heading">
+      <h3 class="privacy-text__heading" id="privacy-controller-heading">Data controller</h3>
+      <address class="privacy-text__address">
+        {% if publisherName %}<span>{{ publisherName }}</span>{% endif %}
+        {% if businessAddress %}<span>{{ businessAddress|nl2br }}</span>{% endif %}
+        {% if emailAddress %}<a href="mailto:{{ emailAddress|e('html_attr') }}">{{ emailAddress }}</a>{% endif %}
+      </address>
+    </section>
+  {% endif %}
+
+  {% if tlsValue and tlsValue|striptags|trim %}
+    <section class="privacy-text__section" aria-labelledby="privacy-encryption-heading">
+      <h3 class="privacy-text__heading" id="privacy-encryption-heading">Encrypted data transmission</h3>
+      <div class="panel-rich-text">{{ tlsValue }}</div>
+    </section>
+  {% endif %}
+
+  {% if logsValue and logsValue|striptags|trim %}
+    <section class="privacy-text__section" aria-labelledby="privacy-logs-heading">
+      <h3 class="privacy-text__heading" id="privacy-logs-heading">Web server log files</h3>
+      <div class="panel-rich-text">{{ logsValue }}</div>
+      {% if logRetention %}
+        <p><span class="privacy-text__label">Retention:</span> Log data is normally deleted or anonymised after {{ logRetention }}. It may be retained for longer where a security incident or legal claim requires investigation.</p>
+      {% endif %}
+    </section>
+  {% endif %}
+
+  {% if cookiesValue and cookiesValue|striptags|trim %}
+    <section class="privacy-text__section" aria-labelledby="privacy-cookies-heading">
+      <h3 class="privacy-text__heading" id="privacy-cookies-heading">Cookies</h3>
+      <div class="panel-rich-text">{{ cookiesValue }}</div>
+    </section>
+  {% endif %}
+
+  {% if contactValue and contactValue|striptags|trim %}
+    <section class="privacy-text__section" aria-labelledby="privacy-contact-heading">
+      <h3 class="privacy-text__heading" id="privacy-contact-heading">Contact requests</h3>
+      <div class="panel-rich-text">{{ contactValue }}</div>
+      {% if inquiryRetention %}
+        <p><span class="privacy-text__label">Retention:</span> Correspondence is deleted {{ inquiryRetention }}.</p>
+      {% endif %}
+    </section>
+  {% endif %}
+
+  {% if cdnValue and cdnValue|striptags|trim %}
+    <section class="privacy-text__section" aria-labelledby="privacy-cdn-heading">
+      <h3 class="privacy-text__heading" id="privacy-cdn-heading">External content delivery</h3>
+      <div class="panel-rich-text">{{ cdnValue }}</div>
+    </section>
+  {% endif %}
+
+  {% if additionalValue and additionalValue|striptags|trim and additionalValue|striptags|trim != legacyPlaceholder %}
+    <section class="privacy-text__section" aria-labelledby="privacy-additional-heading">
+      <h3 class="privacy-text__heading" id="privacy-additional-heading">Additional privacy information</h3>
+      <div class="panel-rich-text">{{ additionalValue }}</div>
+    </section>
+  {% endif %}
+
+  {% if rightsValue and rightsValue|striptags|trim %}
+    <section class="privacy-text__section" aria-labelledby="privacy-rights-heading">
+      <h3 class="privacy-text__heading" id="privacy-rights-heading">Your data protection rights</h3>
+      <div class="panel-rich-text">{{ rightsValue }}</div>
+      <p>
+        The competent Austrian supervisory authority is the
+        <a href="https://www.dsb.gv.at/">Austrian Data Protection Authority</a>.
+      </p>
+    </section>
+  {% endif %}
+
+  {% if lastUpdated %}
+    <p class="privacy-text__updated"><span class="privacy-text__label">Last updated:</span> {{ lastUpdated|date('F j, Y') }}</p>
+  {% endif %}
 </div>

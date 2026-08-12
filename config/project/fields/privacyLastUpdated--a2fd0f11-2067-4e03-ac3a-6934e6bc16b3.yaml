@@ -1,0 +1,15 @@
+columnSuffix: null
+handle: privacyLastUpdated
+instructions: 'Date shown at the end of the Privacy Policy. Update it whenever the policy or the website’s data processing changes.'
+name: 'Privacy Policy Last Updated'
+searchable: false
+settings:
+  max: null
+  min: null
+  minuteIncrement: 30
+  showDate: true
+  showTime: false
+  showTimeZone: false
+translationKeyFormat: null
+translationMethod: none
+type: craft\fields\Date

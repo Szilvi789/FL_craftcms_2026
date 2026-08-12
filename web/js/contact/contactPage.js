@@ -10,7 +10,6 @@ export function initContactPage(root = document) {
     return null;
   }
 
-  const firstField = panel.querySelector("input, textarea, button");
   const stageTargets = [content, panel].filter(Boolean);
   const ENTER_OFFSET_Y = 44;
   const LEAVE_OFFSET_Y = 44;
@@ -41,8 +40,6 @@ export function initContactPage(root = document) {
       return;
     }
 
-    page.style.setProperty("--contact-form-box-size-px", `${measuredSize}px`);
-
     const panelSize = Math.min(panelRect.width || 0, panelRect.height || 0);
 
     if (!panelSize) {
@@ -52,17 +49,10 @@ export function initContactPage(root = document) {
     page.style.setProperty("--contact-form-scale", `${measuredSize / panelSize}`);
   };
 
-  const setOpen = (open, { focusForm = false } = {}) => {
-    page.dataset.contactPageReady = "true";
+  const setOpen = (open) => {
     page.dataset.contactFormOpen = open ? "true" : "false";
     page.classList.toggle("is-form-open", open);
     panel.setAttribute("aria-hidden", open ? "false" : "true");
-
-    if (open && focusForm) {
-      window.requestAnimationFrame(() => {
-        firstField?.focus();
-      });
-    }
   };
 
   const isOpen = () => page.dataset.contactFormOpen === "true";
